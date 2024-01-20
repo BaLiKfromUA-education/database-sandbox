@@ -4,12 +4,12 @@ services:
   postgres:
     image: postgres:latest
     container_name: postgres-container
+    networks:
+      - isolated_network
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-    ports:
-      - "5433:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -18,15 +18,21 @@ services:
       context: ../../
       dockerfile: build/Dockerfile
     container_name: tester-container
+    networks:
+      - isolated_network
     depends_on:
       - postgres
     environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5433
+      POSTGRES_HOST: postgres-container
+      POSTGRES_PORT: 5432
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-    command: go run /app/cmd/main.go
+    command: go test -v -run TestPostgresCounterTestSuite ./internal/postgresql
 
 volumes:
   postgres-data:
+
+networks:
+  isolated_network:
+    driver: bridge

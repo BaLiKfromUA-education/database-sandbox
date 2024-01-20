@@ -1,0 +1,51 @@
+package postgresql
+
+import (
+	"context"
+	"fmt"
+	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/suite"
+	"log"
+	"testing"
+)
+
+type PostgresCounterTestSuite struct {
+	suite.Suite
+	dao    *CounterDao
+	userId int
+	ctx    context.Context
+}
+
+func (suite *PostgresCounterTestSuite) SetupSuite() {
+	log.Println("Start postgresql tests...")
+	suite.ctx = context.TODO()
+	suite.dao = CreateDao(suite.ctx)
+	suite.userId = 42
+}
+
+func (suite *PostgresCounterTestSuite) SetupTest() {
+	log.Println("Populate table...")
+	suite.dao.InsertBaseRecord(suite.ctx, suite.userId)
+	require.Equal(suite.T(), 1, suite.dao.GetResult(suite.ctx, suite.userId))
+}
+
+func (suite *PostgresCounterTestSuite) TearDownTest() {
+	fmt.Println("Clean up table...")
+	suite.dao.CleanUp(suite.ctx, suite.userId)
+}
+
+func (suite *PostgresCounterTestSuite) TestLostUpdate() {
+	// GIVEN: lost update strategy
+
+	// WHEN
+	suite.dao.ExecuteLostUpdate(suite.ctx, suite.userId)
+
+	// THEN
+	result := suite.dao.GetResult(suite.ctx, suite.userId)
+	log.Printf("Lost update result: %d", result)
+	require.True(suite.T(), result > 1)
+}
+
+func TestPostgresCounterTestSuite(t *testing.T) {
+	suite.Run(t, new(PostgresCounterTestSuite))
+}
