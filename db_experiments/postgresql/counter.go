@@ -44,7 +44,7 @@ func buildDsn() string {
 }
 
 func CreateDao(ctx context.Context) *CounterDao {
-	// this returns connection pool
+	// The returned DB is safe for concurrent use by multiple goroutines and maintains its own pool of idle connections.
 	dbPool, err := sql.Open("pgx", buildDsn())
 
 	if err != nil {
@@ -115,17 +115,16 @@ func (db *CounterDao) lostUpdateImpl(ctx context.Context, id int, wg *sync.WaitG
 
 	var counter int
 	for i := 0; i < 10_000; i++ {
-		tx, err := db.pool.BeginTx(ctx, nil)
-		if err != nil {
-			log.Fatalf("error during creation of transaction: %v", err)
-		}
-
-		if err = tx.QueryRowContext(ctx, selectStatement, id).Scan(&counter); err != nil {
-			_ = tx.Rollback()
+		if err := db.pool.QueryRowContext(ctx, selectStatement, id).Scan(&counter); err != nil {
 			log.Fatalf("error during select: %v", err)
 		}
 
 		counter += 1
+
+		tx, err := db.pool.BeginTx(ctx, nil)
+		if err != nil {
+			log.Fatalf("error during creation of transaction: %v", err)
+		}
 
 		if _, err := tx.ExecContext(ctx, updateStatement, counter, id); err != nil {
 			_ = tx.Rollback()

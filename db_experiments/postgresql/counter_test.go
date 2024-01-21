@@ -62,31 +62,39 @@ func TestPostgresCounterTestSuite(t *testing.T) {
 }
 
 func BenchmarkLostUpdate(b *testing.B) {
-	// GIVEN
-	ctx := context.TODO()
-	id := 42
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
 
-	dao := CreateDao(ctx)
-	dao.CleanUp(ctx, id)
-	dao.InsertBaseRecord(ctx, id)
+		// GIVEN
+		ctx := context.TODO()
+		id := 42
 
-	b.ResetTimer() // Important!
+		dao := CreateDao(ctx)
+		dao.CleanUp(ctx, id)
+		dao.InsertBaseRecord(ctx, id)
 
-	// MEASURE
-	dao.ExecuteLostUpdate(ctx, id)
+		b.StartTimer() // Important!
+
+		// MEASURE
+		dao.ExecuteLostUpdate(ctx, id)
+	}
 }
 
 func BenchmarkInPlaceUpdate(b *testing.B) {
-	// GIVEN
-	ctx := context.TODO()
-	id := 42
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
 
-	dao := CreateDao(ctx)
-	dao.CleanUp(ctx, id)
-	dao.InsertBaseRecord(ctx, id)
+		// GIVEN
+		ctx := context.TODO()
+		id := 42
 
-	b.ResetTimer() // Important!
+		dao := CreateDao(ctx)
+		dao.CleanUp(ctx, id)
+		dao.InsertBaseRecord(ctx, id)
 
-	// MEASURE
-	dao.ExecuteInPlaceUpdate(ctx, id)
+		b.StartTimer() // Important!
+
+		// MEASURE
+		dao.ExecuteInPlaceUpdate(ctx, id)
+	}
 }
