@@ -95,6 +95,18 @@ func (db *CounterDao) GetResult(ctx context.Context, id int) int {
 	return counter
 }
 
+func (db *CounterDao) execute(ctx context.Context, id int, task func(context.Context, int, *sync.WaitGroup)) {
+	var wg sync.WaitGroup
+	n := 10
+	wg.Add(n)
+
+	for i := 0; i < n; i++ {
+		go task(ctx, id, &wg)
+	}
+
+	wg.Wait()
+}
+
 func (db *CounterDao) lostUpdateImpl(ctx context.Context, id int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -115,7 +127,7 @@ func (db *CounterDao) lostUpdateImpl(ctx context.Context, id int, wg *sync.WaitG
 
 		counter += 1
 
-		if _, err := db.pool.ExecContext(ctx, updateStatement, counter, id); err != nil {
+		if _, err := tx.ExecContext(ctx, updateStatement, counter, id); err != nil {
 			_ = tx.Rollback()
 			log.Fatalf("error during update: %v", err)
 		}
@@ -129,13 +141,5 @@ func (db *CounterDao) lostUpdateImpl(ctx context.Context, id int, wg *sync.WaitG
 }
 
 func (db *CounterDao) ExecuteLostUpdate(ctx context.Context, id int) {
-	var wg sync.WaitGroup
-	n := 10
-	wg.Add(n)
-
-	for i := 0; i < n; i++ {
-		go db.lostUpdateImpl(ctx, id, &wg)
-	}
-
-	wg.Wait()
+	db.execute(ctx, id, db.lostUpdateImpl)
 }

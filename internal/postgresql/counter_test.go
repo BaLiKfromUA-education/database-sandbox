@@ -49,3 +49,18 @@ func (suite *PostgresCounterTestSuite) TestLostUpdate() {
 func TestPostgresCounterTestSuite(t *testing.T) {
 	suite.Run(t, new(PostgresCounterTestSuite))
 }
+
+func BenchmarkLostUpdate(b *testing.B) {
+	// GIVEN
+	ctx := context.TODO()
+	id := 42
+
+	dao := CreateDao(ctx)
+	dao.CleanUp(ctx, id)
+	dao.InsertBaseRecord(ctx, id)
+
+	b.ResetTimer() // Important!
+
+	// MEASURE
+	dao.ExecuteLostUpdate(ctx, id)
+}
