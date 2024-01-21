@@ -57,6 +57,17 @@ func (suite *PostgresCounterTestSuite) TestInPlaceUpdate() {
 	require.Equal(suite.T(), 100_000, result)
 }
 
+func (suite *PostgresCounterTestSuite) TestRowLevelLockingUpdate() {
+	// GIVEN: row-level locking update strategy
+
+	// WHEN
+	suite.dao.ExecuteRowLevelLockingUpdate(suite.ctx, suite.userId)
+
+	// THEN
+	result := suite.dao.GetResult(suite.ctx, suite.userId)
+	require.Equal(suite.T(), 100_000, result)
+}
+
 func TestPostgresCounterTestSuite(t *testing.T) {
 	suite.Run(t, new(PostgresCounterTestSuite))
 }
@@ -96,5 +107,24 @@ func BenchmarkInPlaceUpdate(b *testing.B) {
 
 		// MEASURE
 		dao.ExecuteInPlaceUpdate(ctx, id)
+	}
+}
+
+func BenchmarkRowLevelLockingUpdate(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+
+		// GIVEN
+		ctx := context.TODO()
+		id := 42
+
+		dao := CreateDao(ctx)
+		dao.CleanUp(ctx, id)
+		dao.InsertBaseRecord(ctx, id)
+
+		b.StartTimer() // Important!
+
+		// MEASURE
+		dao.ExecuteRowLevelLockingUpdate(ctx, id)
 	}
 }

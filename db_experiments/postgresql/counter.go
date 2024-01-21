@@ -161,10 +161,46 @@ func (db *CounterDao) inplaceUpdateImpl(ctx context.Context, id int, wg *sync.Wa
 	}
 }
 
+func (db *CounterDao) rowLevelLockingImpl(ctx context.Context, id int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	selectStatement := "SELECT counter FROM user_counter WHERE user_id = $1 FOR UPDATE;"
+	updateStatement := "UPDATE user_counter SET counter = $1 WHERE user_id = $2;"
+
+	var counter int
+	for i := 0; i < 10_000; i++ {
+		tx, err := db.pool.BeginTx(ctx, nil)
+		if err != nil {
+			log.Fatalf("error during creation of transaction: %v", err)
+		}
+
+		if err := tx.QueryRowContext(ctx, selectStatement, id).Scan(&counter); err != nil {
+			_ = tx.Rollback()
+			log.Fatalf("error during select: %v", err)
+		}
+
+		counter += 1
+
+		if _, err := tx.ExecContext(ctx, updateStatement, counter, id); err != nil {
+			_ = tx.Rollback()
+			log.Fatalf("error during update: %v", err)
+		}
+
+		if err = tx.Commit(); err != nil {
+			_ = tx.Rollback()
+			log.Fatalf("error during commit")
+		}
+	}
+}
+
 func (db *CounterDao) ExecuteLostUpdate(ctx context.Context, id int) {
 	db.execute(ctx, id, db.lostUpdateImpl)
 }
 
 func (db *CounterDao) ExecuteInPlaceUpdate(ctx context.Context, id int) {
 	db.execute(ctx, id, db.inplaceUpdateImpl)
+}
+
+func (db *CounterDao) ExecuteRowLevelLockingUpdate(ctx context.Context, id int) {
+	db.execute(ctx, id, db.rowLevelLockingImpl)
 }
