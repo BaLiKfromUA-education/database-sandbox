@@ -69,7 +69,7 @@ func CreateDao(ctx context.Context) *CounterDao {
 }
 
 func (db *CounterDao) InsertBaseRecord(ctx context.Context, id int) {
-	statement := "INSERT INTO user_counter (user_id, counter, version) VALUES ($1, 1, 0);"
+	statement := "INSERT INTO user_counter (user_id, counter, version) VALUES ($1, 0, 0);"
 	_, err := db.pool.ExecContext(ctx, statement, id)
 	if err != nil {
 		log.Fatalf("error during inserting base record: %v", err)
@@ -140,6 +140,32 @@ func (db *CounterDao) lostUpdateImpl(ctx context.Context, id int, wg *sync.WaitG
 
 }
 
+func (db *CounterDao) inplaceUpdateImpl(ctx context.Context, id int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	updateStatement := "UPDATE user_counter SET counter = counter + 1 WHERE user_id = $1;"
+	for i := 0; i < 10_000; i++ {
+		tx, err := db.pool.BeginTx(ctx, nil)
+		if err != nil {
+			log.Fatalf("error during creation of transaction: %v", err)
+		}
+
+		if _, err := tx.ExecContext(ctx, updateStatement, id); err != nil {
+			_ = tx.Rollback()
+			log.Fatalf("error during update: %v", err)
+		}
+
+		if err = tx.Commit(); err != nil {
+			_ = tx.Rollback()
+			log.Fatalf("error during commit")
+		}
+	}
+}
+
 func (db *CounterDao) ExecuteLostUpdate(ctx context.Context, id int) {
 	db.execute(ctx, id, db.lostUpdateImpl)
+}
+
+func (db *CounterDao) ExecuteInPlaceUpdate(ctx context.Context, id int) {
+	db.execute(ctx, id, db.inplaceUpdateImpl)
 }
