@@ -28,7 +28,7 @@ services:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-    command: go test -bench=. ./db_experiments/postgresql
+    command: go test -timeout=30m -bench=. ./db_experiments/postgresql
 
 volumes:
   postgres-data:

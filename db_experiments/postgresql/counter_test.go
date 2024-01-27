@@ -68,6 +68,17 @@ func (suite *PostgresCounterTestSuite) TestRowLevelLockingUpdate() {
 	require.Equal(suite.T(), 100_000, result)
 }
 
+func (suite *PostgresCounterTestSuite) TestOptimisticConcurrencyControlUpdate() {
+	// GIVEN: optimistic concurrency control update strategy
+
+	// WHEN
+	suite.dao.ExecuteOptimisticConcurrencyControl(suite.ctx, suite.userId, true)
+
+	// THEN
+	result := suite.dao.GetResult(suite.ctx, suite.userId)
+	require.Equal(suite.T(), 100_000, result)
+}
+
 func TestPostgresCounterTestSuite(t *testing.T) {
 	suite.Run(t, new(PostgresCounterTestSuite))
 }
@@ -126,5 +137,24 @@ func BenchmarkRowLevelLockingUpdate(b *testing.B) {
 
 		// MEASURE
 		dao.ExecuteRowLevelLockingUpdate(ctx, id)
+	}
+}
+
+func BenchmarkOptimisticConcurrencyControlUpdate(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+
+		// GIVEN
+		ctx := context.TODO()
+		id := 42
+
+		dao := CreateDao(ctx)
+		dao.CleanUp(ctx, id)
+		dao.InsertBaseRecord(ctx, id)
+
+		b.StartTimer() // Important!
+
+		// MEASURE
+		dao.ExecuteOptimisticConcurrencyControl(ctx, id, false)
 	}
 }
