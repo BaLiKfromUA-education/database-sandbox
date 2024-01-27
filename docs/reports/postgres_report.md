@@ -13,7 +13,7 @@
   tools. [Link](../../db_experiments/postgresql/counter_test.go)
     - Raw results of final test session can be found [here](../raw_data/postgres_test.log).
 
-## Benchmark results
+## Tests results
 
 | Update Strategy                | Final value is always 100k | Number of concurrent clients (co-routines) | Operation per client | CPU                | Number of CPU threads | Time of execution |
 |--------------------------------|----------------------------|--------------------------------------------|----------------------|--------------------|-----------------------|-------------------|
@@ -21,3 +21,13 @@
 | In-place update                | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 41,64 sec         |
 | Row-level locking              | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 52,59 sec         |
 | Optimistic concurrency control | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 360,97 sec        |
+
+### Why last test is so slow?
+
+This concurrency control technique takes an optimistic approach by **assuming that conflicts between transactions are
+rare**, and it allows transactions to proceed without acquiring locks on database objects during the execution of the
+entire transaction. **Conflicts are validated, detected and resolved only at the time of committing the transaction**.
+
+In our case, the **number of conflicts is huge**! According to final test session, number of conflicts was **705 306**
+which is definitely one of the main reasons of such noticeable difference in execution time 
+
