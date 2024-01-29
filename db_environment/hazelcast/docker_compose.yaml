@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  tester:
+    build:
+      context: ../../
+      dockerfile: build/Dockerfile
+    container_name: tester-container
+    networks:
+      - isolated_network
+    depends_on:
+      - hazelcast_1
+      - hazelcast_2
+      - hazelcast_3
+    environment:
+      POSTGRES_HOST: postgres-container
+    # command: go test -timeout=30m -bench=. ./db_experiments/hazelcast
+
+  management-center:
+    image: hazelcast/management-center:latest-snapshot
+    networks:
+      - isolated_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - hazelcast_1
+      - hazelcast_2
+      - hazelcast_3
+
+  hazelcast_1:
+    image: hazelcast/hazelcast:5.1.7
+    networks:
+      - isolated_network
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast_1:5701
+      - HZ_CLUSTERNAME=distributed_databases
+
+  hazelcast_2:
+    image: hazelcast/hazelcast:5.1.7
+    networks:
+      - isolated_network
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast_2:5701
+      - HZ_CLUSTERNAME=distributed_databases
+
+  hazelcast_3:
+    image: hazelcast/hazelcast:5.1.7
+    networks:
+      - isolated_network
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast_3:5701
+      - HZ_CLUSTERNAME=distributed_databases
+
+networks:
+  isolated_network:
+    driver: bridge
