@@ -14,7 +14,7 @@ services:
       - hazelcast_3
     environment:
       - HAZELCAST_ADDRESSES=hazelcast_1:5701,hazelcast_2:5701,hazelcast_3:5701
-    command: sh -c "sleep 10 && go test -timeout=30m -bench=. ./db_experiments/hazelcast"
+    command: sh -c "sleep 10 && go test -timeout=90m -bench=. ./db_experiments/hazelcast"
 
   management-center:
     image: hazelcast/management-center:latest-snapshot
@@ -34,6 +34,9 @@ services:
     environment:
       - HZ_NETWORK_PUBLICADDRESS=hazelcast_1:5701
       - HZ_CLUSTERNAME=distributed_databases
+      - HAZELCAST_CONFIG=/opt/host-config/hazelcast.xml
+    volumes:
+      - ./config:/opt/host-config
 
   hazelcast_2:
     image: hazelcast/hazelcast:5.1.7
@@ -42,6 +45,9 @@ services:
     environment:
       - HZ_NETWORK_PUBLICADDRESS=hazelcast_2:5701
       - HZ_CLUSTERNAME=distributed_databases
+      - HAZELCAST_CONFIG=/opt/host-config/hazelcast.xml
+    volumes:
+      - ./config:/opt/host-config
 
   hazelcast_3:
     image: hazelcast/hazelcast:5.1.7
@@ -50,6 +56,9 @@ services:
     environment:
       - HZ_NETWORK_PUBLICADDRESS=hazelcast_3:5701
       - HZ_CLUSTERNAME=distributed_databases
+      - HAZELCAST_CONFIG=/opt/host-config/hazelcast.xml
+    volumes:
+      - ./config:/opt/host-config
 
 networks:
   isolated_network:
