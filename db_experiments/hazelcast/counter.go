@@ -89,12 +89,12 @@ func (dao *CounterDao) counterWithPessimisticBlockingImpl(ctx context.Context, k
 	defer wg.Done()
 
 	for i := 0; i < 10_000; i++ {
-		if i%100 == 0 {
-			log.Printf("At %d\n", i)
+		if i%1000 == 0 {
+			log.Printf("[Pessimistic] At %d\n", i)
 		}
 
 		// https://pkg.go.dev/github.com/hazelcast/hazelcast-go-client#hdr-Using_Locks
-		lockCtx := distMap.NewLockContext(nil)
+		lockCtx := distMap.NewLockContext(ctx)
 
 		err := distMap.Lock(lockCtx, key)
 		if err != nil {
@@ -123,10 +123,54 @@ func (dao *CounterDao) counterWithPessimisticBlockingImpl(ctx context.Context, k
 	}
 }
 
+func (dao *CounterDao) counterWithOptimisticBlockingImpl(ctx context.Context, key string, distMap *hazelcast.Map, wg *sync.WaitGroup) {
+	defer wg.Done()
+	debugMode := dao.debugMode.Load()
+
+	for i := 0; i < 10_000; i++ {
+		/*if i%1000 == 0 {
+			log.Printf("[Optimistic] At %d\n", i)
+		}*/
+
+		for {
+			counter, err := distMap.Get(ctx, key)
+			if err != nil {
+				log.Fatalf("Error on Get: %v", err)
+			}
+
+			cnt := counter.(int64)
+
+			ok, err := distMap.ReplaceIfSame(ctx, key, cnt, cnt+1)
+			if err != nil {
+				log.Fatalf("Error on Set: %v", err)
+			}
+
+			if ok {
+				break
+			} else if debugMode {
+				dao.misses.Add(1)
+			}
+		}
+
+	}
+}
+
 func (dao *CounterDao) ExecuteCounterWithoutBlocking(ctx context.Context, name string, key string) {
 	dao.execute(ctx, name, key, dao.counterWithoutBlockingImpl)
 }
 
 func (dao *CounterDao) ExecuteCounterWithPessimisticBlocking(ctx context.Context, name string, key string) {
 	dao.execute(ctx, name, key, dao.counterWithPessimisticBlockingImpl)
+}
+
+func (dao *CounterDao) ExecuteCounterWithOptimisticBlocking(ctx context.Context, name string, key string, debugMode bool) {
+	dao.debugMode.Store(debugMode)
+	dao.misses.Store(0)
+
+	dao.execute(ctx, name, key, dao.counterWithOptimisticBlockingImpl)
+
+	if debugMode {
+		log.Printf("Number of misses: %d\n", dao.misses.Load())
+	}
+	dao.debugMode.Store(false)
 }

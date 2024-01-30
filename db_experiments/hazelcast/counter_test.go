@@ -28,7 +28,7 @@ func TestCounterWithoutBlocking(t *testing.T) {
 	log.Printf("Final value: %v", value)
 
 	require.NoError(t, err)
-	require.True(t, value.(int64) > 0)
+	require.True(t, value.(int64) > int64(0))
 }
 
 func TestCounterWithPessimisticBlocking(t *testing.T) {
@@ -52,5 +52,27 @@ func TestCounterWithPessimisticBlocking(t *testing.T) {
 	value, err := distMap.Get(ctx, keyName)
 	require.NoError(t, err)
 
-	require.Equal(t, value.(int64), 100_000)
+	require.Equal(t, value.(int64), int64(100_000))
+}
+
+func TestCounterWithOptimisticBlocking(t *testing.T) {
+	// GIVEN
+	ctx := context.TODO()
+	counter := CreateDao(ctx)
+
+	mapName := "counter_with_optimistic_blocking"
+	keyName := mapName + "_key"
+
+	distMap := counter.GetMap(ctx, mapName)
+	err := distMap.Set(ctx, keyName, 0)
+	require.NoError(t, err)
+
+	// WHEN
+	counter.ExecuteCounterWithOptimisticBlocking(ctx, mapName, keyName, true)
+
+	// THEN
+	value, err := distMap.Get(ctx, keyName)
+	require.NoError(t, err)
+
+	require.Equal(t, value.(int64), int64(100_000))
 }
