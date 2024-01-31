@@ -1,7 +1,7 @@
 # Task 2 -- Counter Implementation using Hazelcast
 
-- `docker-compose` setup with `postgresql` in a separate
-  container. [Link](../../db_environment/hazelcast/docker_compose.yaml)
+- `docker-compose` setup with 3 `hazelcast` nodes as a separate
+  containers. [Link](../../db_environment/hazelcast/docker_compose.yaml)
 - DAO is implemented in Go. [Link](../../db_experiments/hazelcast/counter.go). This scripts implement:
     - Counter via Distributed Map **without blocking
       **. [Based on example](https://docs.hazelcast.com/imdg/latest/data-structures/map#locking-maps)
