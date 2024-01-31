@@ -1,0 +1,488 @@
+balik@balik:~/Desktop/database-sandbox/db_environment/hazelcast$ docker-compose -f docker_compose.yaml  up
+Creating network "hazelcast_isolated_network" with driver "bridge"
+Creating hazelcast_hazelcast_3_1 ... done
+Creating hazelcast_hazelcast_1_1 ... done
+Creating hazelcast_hazelcast_2_1 ... done
+Creating tester-container              ... done
+Creating hazelcast_management-center_1 ... done
+Attaching to hazelcast_hazelcast_1_1, hazelcast_hazelcast_3_1, hazelcast_hazelcast_2_1, tester-container, hazelcast_management-center_1
+hazelcast_2_1        | ########################################
+hazelcast_2_1        | # JAVA=/usr/bin/java
+hazelcast_2_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_2_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_2_1        | ########################################
+hazelcast_1_1        | ########################################
+hazelcast_1_1        | # JAVA=/usr/bin/java
+hazelcast_3_1        | ########################################
+hazelcast_3_1        | # JAVA=/usr/bin/java
+hazelcast_1_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_1_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_1_1        | ########################################
+hazelcast_3_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_3_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_3_1        | ########################################
+management-center_1  | WARNING: package com.ibm.lang.management.internal not in jdk.management
+hazelcast_3_1        | 2024-01-31 00:30:13,472 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_3_1        | 2024-01-31 00:30:13,474 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_1_1        | 2024-01-31 00:30:13,475 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_1_1        | 2024-01-31 00:30:13,477 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_2_1        | 2024-01-31 00:30:13,605 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_2_1        | 2024-01-31 00:30:13,607 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_3_1        | 2024-01-31 00:30:13,907 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_3:5701,hazelcast.clustername=distributed_databases]
+hazelcast_1_1        | 2024-01-31 00:30:13,913 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_1:5701,hazelcast.clustername=distributed_databases]
+hazelcast_3_1        | 2024-01-31 00:30:13,968 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_3]:5701
+hazelcast_1_1        | 2024-01-31 00:30:13,973 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_1]:5701
+hazelcast_3_1        | 2024-01-31 00:30:14,003 [ INFO] [main] [c.h.s.logo]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_3_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_3_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_3_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_3_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_3_1        | 2024-01-31 00:30:14,003 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_3_1        | 2024-01-31 00:30:14,003 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_3]:5701
+hazelcast_3_1        | 2024-01-31 00:30:14,004 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_3_1        | 2024-01-31 00:30:14,004 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_3_1        | To enable integrity checker do one of the following:
+hazelcast_3_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_3_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_3_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        | 2024-01-31 00:30:14,006 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_3_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_3_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_3_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_3_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        | 2024-01-31 00:30:14,012 [ INFO] [main] [c.h.s.logo]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_1_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_1_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_1_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_1_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_1_1        | 2024-01-31 00:30:14,013 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_1_1        | 2024-01-31 00:30:14,013 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_1]:5701
+hazelcast_1_1        | 2024-01-31 00:30:14,013 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:30:14,013 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_1_1        | To enable integrity checker do one of the following:
+hazelcast_1_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_1_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_1_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        | 2024-01-31 00:30:14,016 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_1_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_1_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_1_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_1_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        | 2024-01-31 00:30:14,055 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_2:5701,hazelcast.clustername=distributed_databases]
+hazelcast_2_1        | 2024-01-31 00:30:14,115 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_2]:5701
+hazelcast_2_1        | 2024-01-31 00:30:14,150 [ INFO] [main] [c.h.s.logo]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_2_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_2_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_2_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_2_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_2_1        | 2024-01-31 00:30:14,150 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_2_1        | 2024-01-31 00:30:14,151 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_2]:5701
+hazelcast_2_1        | 2024-01-31 00:30:14,151 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_2_1        | 2024-01-31 00:30:14,151 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_2_1        | To enable integrity checker do one of the following:
+hazelcast_2_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_2_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_2_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        | 2024-01-31 00:30:14,163 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_2_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_2_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_2_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_2_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+management-center_1  | Trying to upgrade H2 in /data
+management-center_1  | Clean start. Nothing to upgrade
+management-center_1  | Container support enabled. Using automatic heap sizing. JVM will use up to 80% of the memory limit of the host.
+management-center_1  | + exec java -server '-Dloader.path=/opt/hazelcast/management-center/bin/user-lib/*' --add-opens java.base/java.lang=ALL-UNNAMED --add-opens jdk.management/com.ibm.lang.management.internal=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED -Dhazelcast.mc.home=/data -Djava.net.preferIPv4Stack=true -XX:+UseContainerSupport -XX:MaxRAMPercentage=80 -cp /opt/hazelcast/management-center/bin/../hazelcast-management-center-5.4-SNAPSHOT.jar org.springframework.boot.loader.launch.PropertiesLauncher
+hazelcast_3_1        | 2024-01-31 00:30:14,515 [ INFO] [main] [c.h.s.security]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+management-center_1  | WARNING: package com.ibm.lang.management.internal not in jdk.management
+hazelcast_1_1        | 2024-01-31 00:30:14,563 [ INFO] [main] [c.h.s.security]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_3_1        | 2024-01-31 00:30:14,621 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_3_1        | 2024-01-31 00:30:14,627 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_1_1        | 2024-01-31 00:30:14,657 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_1_1        | 2024-01-31 00:30:14,662 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_2_1        | 2024-01-31 00:30:14,680 [ INFO] [main] [c.h.s.security]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_2_1        | 2024-01-31 00:30:14,806 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_2_1        | 2024-01-31 00:30:14,812 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_3_1        | 2024-01-31 00:30:14,908 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_3_1        | 2024-01-31 00:30:14,926 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] [hazelcast_3]:5701 is STARTING
+hazelcast_1_1        | 2024-01-31 00:30:14,945 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_1_1        | 2024-01-31 00:30:14,959 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] [hazelcast_1]:5701 is STARTING
+hazelcast_2_1        | 2024-01-31 00:30:15,081 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_2_1        | 2024-01-31 00:30:15,092 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] [hazelcast_2]:5701 is STARTING
+management-center_1  | 2024-01-31 00:30:16,388 [ INFO] [main] [c.h.w.MCApplication]: Starting MCApplication using Java 21.0.2 with PID 1 (/opt/hazelcast/management-center/hazelcast-management-center-5.4-SNAPSHOT.jar started by hazelcast in /opt/hazelcast/management-center)
+management-center_1  | 2024-01-31 00:30:16,399 [ INFO] [main] [c.h.w.MCApplication]: No active profile set, falling back to 1 default profile: "default"
+hazelcast_3_1        | 2024-01-31 00:30:17,694 [ INFO] [main] [c.h.i.c.ClusterService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | Members {size:1, ver:1} [
+hazelcast_3_1        |  Member [hazelcast_3]:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81 this
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_3_1        | 2024-01-31 00:30:17,717 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] [hazelcast_3]:5701 is STARTED
+hazelcast_2_1        | 2024-01-31 00:30:17,732 [ INFO] [main] [c.h.i.c.i.MulticastJoiner]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Trying to join to discovered node: [hazelcast_3]:5701
+hazelcast_3_1        | 2024-01-31 00:30:17,757 [ INFO] [hz.serene_greider.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.2:5701 and /192.168.80.4:37197
+hazelcast_2_1        | 2024-01-31 00:30:17,760 [ INFO] [hz.sad_newton.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.4:37197 and hazelcast_3/192.168.80.2:5701
+hazelcast_1_1        | 2024-01-31 00:30:17,781 [ INFO] [main] [c.h.i.c.i.MulticastJoiner]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Trying to join to discovered node: [hazelcast_3]:5701
+hazelcast_3_1        | 2024-01-31 00:30:17,797 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.2:5701 and /192.168.80.3:60517
+hazelcast_1_1        | 2024-01-31 00:30:17,800 [ INFO] [hz.adoring_bouman.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.3:60517 and hazelcast_3/192.168.80.2:5701
+hazelcast_3_1        | 2024-01-31 00:30:17,897 [ INFO] [hz.serene_greider.cached.thread-2] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CP Subsystem is waiting for 3 members to join the cluster. Current member count: 1
+management-center_1  |
+management-center_1  | UPDATE SUMMARY
+management-center_1  | Run:                         29
+management-center_1  | Previously run:               0
+management-center_1  | Filtered out:                 0
+management-center_1  | -------------------------------
+management-center_1  | Total change sets:           29
+management-center_1  |
+management-center_1  | 2024-01-31 00:30:22,401 [ INFO] [main] [c.h.w.s.s.i.DisableLoginStrategy]: Login will be disabled for 5 seconds after 3 failed login attempts. For every 3 consecutive failed login attempts, disable period will be multiplied by 10.
+management-center_1  | 2024-01-31 00:30:22,445 [ INFO] [main] [c.h.w.m.i.r.RocksDBLoader]: '/tmp' is used as RocksDB shared library directory
+management-center_1  | 2024-01-31 00:30:22,546 [ INFO] [main] [c.h.w.m.i.r.RocksDBLoader]: '/tmp' is used as RocksDB shared library directory
+hazelcast_3_1        | 2024-01-31 00:30:22,898 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.i.c.ClusterService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | Members {size:3, ver:3} [
+hazelcast_3_1        |  Member [hazelcast_3]:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81 this
+hazelcast_3_1        |  Member [hazelcast_2]:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+hazelcast_3_1        |  Member [hazelcast_1]:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_2_1        | 2024-01-31 00:30:22,909 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.i.c.ClusterService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | Members {size:3, ver:3} [
+hazelcast_2_1        |  Member [hazelcast_3]:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+hazelcast_2_1        |  Member [hazelcast_2]:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461 this
+hazelcast_2_1        |  Member [hazelcast_1]:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_1_1        | 2024-01-31 00:30:22,909 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.i.c.ClusterService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | Members {size:3, ver:3} [
+hazelcast_1_1        |  Member [hazelcast_3]:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+hazelcast_1_1        |  Member [hazelcast_2]:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+hazelcast_1_1        |  Member [hazelcast_1]:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273 this
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-01-31 00:30:22,911 [ INFO] [hz.adoring_bouman.cached.thread-5] [c.h.i.s.t.TcpServerConnector]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connecting to hazelcast_2/192.168.80.4:5701, timeout: 10000, bind-any: true
+hazelcast_2_1        | 2024-01-31 00:30:22,911 [ INFO] [hz.sad_newton.cached.thread-4] [c.h.i.s.t.TcpServerConnector]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connecting to hazelcast_1/192.168.80.3:5701, timeout: 10000, bind-any: true
+hazelcast_3_1        | 2024-01-31 00:30:22,913 [ INFO] [hz.serene_greider.cached.thread-4] [c.h.c.i.RaftService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}, RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}]
+hazelcast_2_1        | 2024-01-31 00:30:22,916 [ INFO] [hz.sad_newton.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.4:5701 and /192.168.80.3:43127
+hazelcast_1_1        | 2024-01-31 00:30:22,916 [ INFO] [hz.adoring_bouman.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.3:5701 and /192.168.80.4:49009
+hazelcast_2_1        | 2024-01-31 00:30:22,917 [ INFO] [hz.sad_newton.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.4:49009 and hazelcast_1/192.168.80.3:5701
+hazelcast_3_1        | 2024-01-31 00:30:22,917 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_1_1        | 2024-01-31 00:30:22,918 [ INFO] [hz.adoring_bouman.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /192.168.80.3:43127 and hazelcast_2/192.168.80.4:5701
+hazelcast_3_1        | 2024-01-31 00:30:22,920 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.i.p.i.PartitionStateManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initializing cluster partition table arrangement...
+hazelcast_1_1        | 2024-01-31 00:30:22,951 [ INFO] [hz.adoring_bouman.cached.thread-2] [c.h.c.i.RaftService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}, RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}]
+hazelcast_1_1        | 2024-01-31 00:30:22,953 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_2_1        | 2024-01-31 00:30:23,087 [ INFO] [hz.sad_newton.cached.thread-4] [c.h.c.i.RaftService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}, RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}]
+hazelcast_2_1        | 2024-01-31 00:30:23,088 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_2_1        | 2024-01-31 00:30:23,930 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] [hazelcast_2]:5701 is STARTED
+hazelcast_1_1        | 2024-01-31 00:30:23,932 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] [hazelcast_1]:5701 is STARTED
+hazelcast_1_1        | 2024-01-31 00:30:24,959 [ WARN] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.RaftNodeImpl$LeaderFailureDetectionTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We are FOLLOWER and there is no current leader. Will start new election round...
+hazelcast_1_1        | 2024-01-31 00:30:24,960 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.t.PreVoteTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Pre-vote started for next term: 1, last log index: 0, last log term: 0
+hazelcast_1_1        | 2024-01-31 00:30:24,960 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: METADATA(0), size:3, term:0, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - FOLLOWER this
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_2_1        | 2024-01-31 00:30:24,968 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_3_1        | 2024-01-31 00:30:24,967 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_1_1        | 2024-01-31 00:30:24,970 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Pre-vote granted from RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'} for term: 1, number of votes: 2, majority: 2
+hazelcast_1_1        | 2024-01-31 00:30:24,970 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We have the majority during pre-vote phase. Let's start real election!
+hazelcast_1_1        | 2024-01-31 00:30:24,971 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.t.LeaderElectionTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Leader election started for term: 1, last log index: 0, last log term: 0
+hazelcast_1_1        | 2024-01-31 00:30:24,971 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - CANDIDATE this
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-01-31 00:30:24,973 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Ignored PreVoteResponse{voter=RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, term=1, granted=true}. We are not FOLLOWER anymore.
+hazelcast_2_1        | 2024-01-31 00:30:24,974 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-01-31 00:30:24,974 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-01-31 00:30:24,975 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701} - FOLLOWER this
+hazelcast_3_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_3_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_2_1        | 2024-01-31 00:30:24,975 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_2_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_3_1        | 2024-01-31 00:30:24,975 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_2_1        | 2024-01-31 00:30:24,975 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_1_1        | 2024-01-31 00:30:24,977 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Vote granted from RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'} for term: 1, number of votes: 2, majority: 2
+hazelcast_1_1        | 2024-01-31 00:30:24,978 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We are the LEADER!
+hazelcast_1_1        | 2024-01-31 00:30:24,979 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER this
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-01-31 00:30:24,982 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Ignored VoteResponse{voter=RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}, term=1, granted=true}. We are not CANDIDATE anymore.
+hazelcast_3_1        | 2024-01-31 00:30:24,983 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.h.AppendRequestHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}
+hazelcast_2_1        | 2024-01-31 00:30:24,983 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.h.AppendRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}
+hazelcast_2_1        | 2024-01-31 00:30:24,983 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_2_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_3_1        | 2024-01-31 00:30:24,983 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701} - FOLLOWER this
+hazelcast_3_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_3_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+management-center_1  | 2024-01-31 00:30:25,174 [ INFO] [main] [c.h.w.MCApplication]: Started MCApplication in 9.484 seconds (process running for 10.698)
+management-center_1  | 2024-01-31 00:30:25,183 [ INFO] [task-20] [c.h.w.MCApplication]:
+management-center_1  |
+management-center_1  | Hazelcast Management Center successfully started at http://localhost:8080
+management-center_1  |
+management-center_1  | 2024-01-31 00:30:25,183 [ INFO] [task-20] [c.h.w.MCApplication]: Hazelcast Management Center 5.4-SNAPSHOT (20240129 - f762587), Hazelcast client version: 5.4.0-SNAPSHOT, embedded Jetty version: 12.0.4, CLC version 5.3.5
+management-center_1  | 2024-01-31 00:30:25,213 [ INFO] [task-13] [c.h.w.s.ClusterManager]: Connecting to 0 enabled cluster(s) on startup.
+hazelcast_1_1        | 2024-01-31 00:30:25,703 [ INFO] [hz.adoring_bouman.cached.thread-2] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}, CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}]
+hazelcast_2_1        | 2024-01-31 00:30:25,704 [ INFO] [hz.sad_newton.cached.thread-4] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}, CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}]
+hazelcast_3_1        | 2024-01-31 00:30:25,705 [ INFO] [hz.serene_greider.cached.thread-4] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}, CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}]
+tester-container     | 2024/01/31 00:30:32 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:30:32,800 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /192.168.80.3:5701->/192.168.80.5:52182, qualifier=null, endpoint=[192.168.80.5]:52182, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 9d672142-4e8e-4087-bf8e-84bbe6161684, client name: hz.client_1, client version: 1.4.1
+tester-container     | 2024/01/31 00:30:32 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:30:32 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:30:32,816 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=3, /192.168.80.2:5701->/192.168.80.5:59782, qualifier=null, endpoint=[192.168.80.5]:59782, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 9d672142-4e8e-4087-bf8e-84bbe6161684, client name: hz.client_1, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:30:32,830 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /192.168.80.4:5701->/192.168.80.5:60946, qualifier=null, endpoint=[192.168.80.5]:60946, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 9d672142-4e8e-4087-bf8e-84bbe6161684, client name: hz.client_1, client version: 1.4.1
+tester-container     | 2024/01/31 00:30:43 Final value: 21604
+tester-container     | 2024/01/31 00:30:43 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:30:43,449 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=5, /192.168.80.3:5701->/192.168.80.5:57946, qualifier=null, endpoint=[192.168.80.5]:57946, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 4c8acd57-42e1-4844-9b4a-b350711b368f, client name: hz.client_2, client version: 1.4.1
+tester-container     | 2024/01/31 00:30:43 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:30:43 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:30:43,457 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /192.168.80.2:5701->/192.168.80.5:50444, qualifier=null, endpoint=[192.168.80.5]:50444, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 4c8acd57-42e1-4844-9b4a-b350711b368f, client name: hz.client_2, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:30:43,459 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=5, /192.168.80.4:5701->/192.168.80.5:35412, qualifier=null, endpoint=[192.168.80.5]:35412, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 4c8acd57-42e1-4844-9b4a-b350711b368f, client name: hz.client_2, client version: 1.4.1
+tester-container     | 2024/01/31 00:31:10 Number of misses: 456074
+tester-container     | 2024/01/31 00:31:10 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:31:10,215 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=6, /192.168.80.3:5701->/192.168.80.5:41718, qualifier=null, endpoint=[192.168.80.5]:41718, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, client name: hz.client_3, client version: 1.4.1
+tester-container     | 2024/01/31 00:31:10 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:31:10 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:31:10,217 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=5, /192.168.80.2:5701->/192.168.80.5:35814, qualifier=null, endpoint=[192.168.80.5]:35814, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, client name: hz.client_3, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:31:10,219 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=6, /192.168.80.4:5701->/192.168.80.5:45036, qualifier=null, endpoint=[192.168.80.5]:45036, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, client name: hz.client_3, client version: 1.4.1
+hazelcast_1_1        | 2024-01-31 00:31:10,227 [ INFO] [hz.adoring_bouman.partition-operation.thread-0] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] New CPGroupId{name='default', seed=0, groupId=2082} is created with [CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}, CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}]
+hazelcast_3_1        | 2024-01-31 00:31:10,228 [ INFO] [hz.serene_greider.partition-operation.thread-0] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] New CPGroupId{name='default', seed=0, groupId=2082} is created with [CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}, CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}]
+hazelcast_2_1        | 2024-01-31 00:31:10,228 [ INFO] [hz.sad_newton.partition-operation.thread-0] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] New CPGroupId{name='default', seed=0, groupId=2082} is created with [CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}, CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}, CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}]
+hazelcast_1_1        | 2024-01-31 00:31:10,228 [ INFO] [hz.adoring_bouman.cached.thread-4] [c.h.c.i.RaftService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='default', seed=0, groupId=2082}] is created with [RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}]
+hazelcast_1_1        | 2024-01-31 00:31:10,228 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_3_1        | 2024-01-31 00:31:10,229 [ INFO] [hz.serene_greider.generic-operation.thread-4] [c.h.c.i.RaftService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='default', seed=0, groupId=2082}] is created with [RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}]
+hazelcast_3_1        | 2024-01-31 00:31:10,229 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_2_1        | 2024-01-31 00:31:10,229 [ INFO] [hz.sad_newton.generic-operation.thread-4] [c.h.c.i.RaftService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='default', seed=0, groupId=2082}] is created with [RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}]
+hazelcast_2_1        | 2024-01-31 00:31:10,229 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_1_1        | 2024-01-31 00:31:12,330 [ WARN] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.RaftNodeImpl$LeaderFailureDetectionTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We are FOLLOWER and there is no current leader. Will start new election round...
+hazelcast_1_1        | 2024-01-31 00:31:12,330 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.t.PreVoteTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Pre-vote started for next term: 1, last log index: 0, last log term: 0
+hazelcast_1_1        | 2024-01-31 00:31:12,330 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: default(2082), size:3, term:0, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - FOLLOWER this
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_2_1        | 2024-01-31 00:31:12,331 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_3_1        | 2024-01-31 00:31:12,331 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_1_1        | 2024-01-31 00:31:12,332 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Pre-vote granted from RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'} for term: 1, number of votes: 2, majority: 2
+hazelcast_1_1        | 2024-01-31 00:31:12,332 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We have the majority during pre-vote phase. Let's start real election!
+hazelcast_1_1        | 2024-01-31 00:31:12,333 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.t.LeaderElectionTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Leader election started for term: 1, last log index: 0, last log term: 0
+hazelcast_1_1        | 2024-01-31 00:31:12,334 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - CANDIDATE this
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-01-31 00:31:12,337 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Ignored PreVoteResponse{voter=RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'}, term=1, granted=true}. We are not FOLLOWER anymore.
+hazelcast_2_1        | 2024-01-31 00:31:12,337 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteRequestHandlerTask(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-01-31 00:31:12,337 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteRequestHandlerTask(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}
+hazelcast_3_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701} - FOLLOWER this
+hazelcast_3_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_2_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}
+hazelcast_2_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_2_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_3_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteRequestHandlerTask(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.h.AppendRequestHandlerTask(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}
+hazelcast_1_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Vote granted from RaftEndpoint{uuid='8514f6c9-5e30-4d0b-9b02-aefa00b21b81'} for term: 1, number of votes: 2, majority: 2
+hazelcast_3_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.serene_greider.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER
+hazelcast_3_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701} - FOLLOWER this
+hazelcast_3_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_1_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] We are the LEADER!
+hazelcast_1_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER this
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701}
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.adoring_bouman.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteResponseHandlerTask(default)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Ignored VoteResponse{voter=RaftEndpoint{uuid='95e22f28-499f-4c04-b5a0-dc4c2f76d461'}, term=1, granted=true}. We are not CANDIDATE anymore.
+hazelcast_2_1        | 2024-01-31 00:31:12,338 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.h.VoteRequestHandlerTask(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_2_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.h.AppendRequestHandlerTask(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='0ee7b71a-2639-49ec-b77d-4a2383e73273'}
+hazelcast_2_1        | 2024-01-31 00:31:12,339 [ INFO] [hz.sad_newton.partition-operation.thread-9] [c.h.c.i.r.i.RaftNode(default)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: default(2082), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} - LEADER
+hazelcast_2_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701}
+hazelcast_2_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+tester-container     | 2024/01/31 00:31:22 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:31:22,375 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=7, /192.168.80.3:5701->/192.168.80.5:53246, qualifier=null, endpoint=[192.168.80.5]:53246, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 0ea682f2-20d2-4bbc-9ac8-ef68a340328e, client name: hz.client_4, client version: 1.4.1
+tester-container     | 2024/01/31 00:31:22 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:31:22 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:31:22,376 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=6, /192.168.80.2:5701->/192.168.80.5:39158, qualifier=null, endpoint=[192.168.80.5]:39158, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 0ea682f2-20d2-4bbc-9ac8-ef68a340328e, client name: hz.client_4, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:31:22,378 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=7, /192.168.80.4:5701->/192.168.80.5:40540, qualifier=null, endpoint=[192.168.80.5]:40540, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 0ea682f2-20d2-4bbc-9ac8-ef68a340328e, client name: hz.client_4, client version: 1.4.1
+hazelcast_1_1        | 2024-01-31 00:31:25,715 [ INFO] [hz.adoring_bouman.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_1_1        |  CPMember{uuid=8514f6c9-5e30-4d0b-9b02-aefa00b21b81, address=[hazelcast_3]:5701} has 0,
+hazelcast_1_1        |  CPMember{uuid=95e22f28-499f-4c04-b5a0-dc4c2f76d461, address=[hazelcast_2]:5701} has 0,
+hazelcast_1_1        |  CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} has 1 leaderships.
+hazelcast_1_1        | 2024-01-31 00:31:25,715 [ INFO] [hz.adoring_bouman.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Searching a candidate transfer leadership from CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701} with 1 leaderships.
+hazelcast_1_1        | 2024-01-31 00:31:25,715 [ INFO] [hz.adoring_bouman.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] No candidate could be found to get leadership from CPMember{uuid=0ee7b71a-2639-49ec-b77d-4a2383e73273, address=[hazelcast_1]:5701}. Skipping to next...
+hazelcast_1_1        | 2024-01-31 00:31:25,715 [ INFO] [hz.adoring_bouman.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | goos: linux
+tester-container     | goarch: amd64
+tester-container     | pkg: database-sandbox/db_experiments/hazelcast
+tester-container     | cpu: AMD Ryzen 9 5900HS with Radeon Graphics
+tester-container     | BenchmarkCounterWithoutBlocking-16                      1        5743534145 ns/op
+tester-container     | 2024/01/31 00:31:28 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:31:28,128 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=8, /192.168.80.3:5701->/192.168.80.5:53250, qualifier=null, endpoint=[192.168.80.5]:53250, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 6780692f-208e-42fd-adb6-c02cf77ef3cc, client name: hz.client_5, client version: 1.4.1
+tester-container     | 2024/01/31 00:31:28 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:31:28 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:31:28,135 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=7, /192.168.80.2:5701->/192.168.80.5:39162, qualifier=null, endpoint=[192.168.80.5]:39162, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 6780692f-208e-42fd-adb6-c02cf77ef3cc, client name: hz.client_5, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:31:28,142 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=8, /192.168.80.4:5701->/192.168.80.5:40548, qualifier=null, endpoint=[192.168.80.5]:40548, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 6780692f-208e-42fd-adb6-c02cf77ef3cc, client name: hz.client_5, client version: 1.4.1
+tester-container     | BenchmarkCounterWithOptimisticBlocking-16               1        26065138704 ns/op
+tester-container     | 2024/01/31 00:31:54 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-01-31 00:31:54,219 [ INFO] [hz.adoring_bouman.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=9, /192.168.80.3:5701->/192.168.80.5:38494, qualifier=null, endpoint=[192.168.80.5]:38494, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 2ac6e46d-90f5-4637-b224-f7f78977b1af, client name: hz.client_6, client version: 1.4.1
+tester-container     | 2024/01/31 00:31:54 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/01/31 00:31:54 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_3:5701 - 8514f6c9-5e30-4d0b-9b02-aefa00b21b81
+tester-container     |  Member hazelcast_2:5701 - 95e22f28-499f-4c04-b5a0-dc4c2f76d461
+tester-container     |  Member hazelcast_1:5701 - 0ee7b71a-2639-49ec-b77d-4a2383e73273
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-01-31 00:31:54,221 [ INFO] [hz.serene_greider.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=8, /192.168.80.2:5701->/192.168.80.5:47668, qualifier=null, endpoint=[192.168.80.5]:47668, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 2ac6e46d-90f5-4637-b224-f7f78977b1af, client name: hz.client_6, client version: 1.4.1
+hazelcast_2_1        | 2024-01-31 00:31:54,222 [ INFO] [hz.sad_newton.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=9, /192.168.80.4:5701->/192.168.80.5:53288, qualifier=null, endpoint=[192.168.80.5]:53288, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 2ac6e46d-90f5-4637-b224-f7f78977b1af, client name: hz.client_6, client version: 1.4.1
+tester-container     | BenchmarkCounterWithAtomicLong-16                       1        9076990329 ns/op
+tester-container     | PASS
+tester-container     | ok       database-sandbox/db_experiments/hazelcast       90.516s
+hazelcast_3_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=8, /192.168.80.2:5701->/192.168.80.5:47668, qualifier=null, endpoint=[192.168.80.5]:47668, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_2_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.sad_newton.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=9, /192.168.80.4:5701->/192.168.80.5:53288, qualifier=null, endpoint=[192.168.80.5]:53288, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_2_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.sad_newton.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=7, /192.168.80.4:5701->/192.168.80.5:40540, qualifier=null, endpoint=[192.168.80.5]:40540, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_2_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.sad_newton.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=8, /192.168.80.4:5701->/192.168.80.5:40548, qualifier=null, endpoint=[192.168.80.5]:40548, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.adoring_bouman.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=4, /192.168.80.3:5701->/192.168.80.5:52182, qualifier=null, endpoint=[192.168.80.5]:52182, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.adoring_bouman.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=9, /192.168.80.3:5701->/192.168.80.5:38494, qualifier=null, endpoint=[192.168.80.5]:38494, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.adoring_bouman.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=8, /192.168.80.3:5701->/192.168.80.5:53250, qualifier=null, endpoint=[192.168.80.5]:53250, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,305 [ INFO] [hz.serene_greider.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=3, /192.168.80.2:5701->/192.168.80.5:59782, qualifier=null, endpoint=[192.168.80.5]:59782, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.adoring_bouman.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=6, /192.168.80.3:5701->/192.168.80.5:41718, qualifier=null, endpoint=[192.168.80.5]:41718, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_2_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.sad_newton.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=5, /192.168.80.4:5701->/192.168.80.5:35412, qualifier=null, endpoint=[192.168.80.5]:35412, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_2_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.sad_newton.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=4, /192.168.80.4:5701->/192.168.80.5:60946, qualifier=null, endpoint=[192.168.80.5]:60946, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.adoring_bouman.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=7, /192.168.80.3:5701->/192.168.80.5:53246, qualifier=null, endpoint=[192.168.80.5]:53246, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.adoring_bouman.event-5] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=4, /192.168.80.3:5701->/192.168.80.5:52182, qualifier=null, endpoint=[192.168.80.5]:52182, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, clientName=hz.client_1, authenticated=true, clientVersion=1.4.1, creationTime=1706661032797, latest clientAttributes=null, labels=[]}
+hazelcast_1_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.adoring_bouman.event-3] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=8, /192.168.80.3:5701->/192.168.80.5:53250, qualifier=null, endpoint=[192.168.80.5]:53250, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, clientName=hz.client_5, authenticated=true, clientVersion=1.4.1, creationTime=1706661088128, latest clientAttributes=null, labels=[]}
+hazelcast_1_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.adoring_bouman.event-2] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=9, /192.168.80.3:5701->/192.168.80.5:38494, qualifier=null, endpoint=[192.168.80.5]:38494, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, clientName=hz.client_6, authenticated=true, clientVersion=1.4.1, creationTime=1706661114219, latest clientAttributes=null, labels=[]}
+hazelcast_1_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.adoring_bouman.event-1] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=6, /192.168.80.3:5701->/192.168.80.5:41718, qualifier=null, endpoint=[192.168.80.5]:41718, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, clientName=hz.client_3, authenticated=true, clientVersion=1.4.1, creationTime=1706661070214, latest clientAttributes=null, labels=[]}
+hazelcast_1_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.adoring_bouman.event-4] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=7, /192.168.80.3:5701->/192.168.80.5:53246, qualifier=null, endpoint=[192.168.80.5]:53246, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, clientName=hz.client_4, authenticated=true, clientVersion=1.4.1, creationTime=1706661082374, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.sad_newton.event-3] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=7, /192.168.80.4:5701->/192.168.80.5:40540, qualifier=null, endpoint=[192.168.80.5]:40540, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, clientName=hz.client_4, authenticated=true, clientVersion=1.4.1, creationTime=1706661082377, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.sad_newton.event-1] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=9, /192.168.80.4:5701->/192.168.80.5:53288, qualifier=null, endpoint=[192.168.80.5]:53288, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, clientName=hz.client_6, authenticated=true, clientVersion=1.4.1, creationTime=1706661114222, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.sad_newton.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connection[id=6, /192.168.80.4:5701->/192.168.80.5:45036, qualifier=null, endpoint=[192.168.80.5]:45036, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=7, /192.168.80.2:5701->/192.168.80.5:39162, qualifier=null, endpoint=[192.168.80.5]:39162, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,308 [ INFO] [hz.serene_greider.event-5] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=3, /192.168.80.2:5701->/192.168.80.5:59782, qualifier=null, endpoint=[192.168.80.5]:59782, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, clientName=hz.client_1, authenticated=true, clientVersion=1.4.1, creationTime=1706661032813, latest clientAttributes=null, labels=[]}
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=6, /192.168.80.2:5701->/192.168.80.5:39158, qualifier=null, endpoint=[192.168.80.5]:39158, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.event-5] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=7, /192.168.80.2:5701->/192.168.80.5:39162, qualifier=null, endpoint=[192.168.80.5]:39162, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, clientName=hz.client_5, authenticated=true, clientVersion=1.4.1, creationTime=1706661088135, latest clientAttributes=null, labels=[]}
+hazelcast_1_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.adoring_bouman.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Connection[id=5, /192.168.80.3:5701->/192.168.80.5:57946, qualifier=null, endpoint=[192.168.80.5]:57946, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.adoring_bouman.event-4] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=5, /192.168.80.3:5701->/192.168.80.5:57946, qualifier=null, endpoint=[192.168.80.5]:57946, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, clientName=hz.client_2, authenticated=true, clientVersion=1.4.1, creationTime=1706661043449, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.sad_newton.event-1] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=8, /192.168.80.4:5701->/192.168.80.5:40548, qualifier=null, endpoint=[192.168.80.5]:40548, remoteUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=6780692f-208e-42fd-adb6-c02cf77ef3cc, clientName=hz.client_5, authenticated=true, clientVersion=1.4.1, creationTime=1706661088138, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.sad_newton.event-5] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=5, /192.168.80.4:5701->/192.168.80.5:35412, qualifier=null, endpoint=[192.168.80.5]:35412, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, clientName=hz.client_2, authenticated=true, clientVersion=1.4.1, creationTime=1706661043459, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.sad_newton.event-4] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=6, /192.168.80.4:5701->/192.168.80.5:45036, qualifier=null, endpoint=[192.168.80.5]:45036, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, clientName=hz.client_3, authenticated=true, clientVersion=1.4.1, creationTime=1706661070218, latest clientAttributes=null, labels=[]}
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=5, /192.168.80.2:5701->/192.168.80.5:35814, qualifier=null, endpoint=[192.168.80.5]:35814, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.event-1] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=8, /192.168.80.2:5701->/192.168.80.5:47668, qualifier=null, endpoint=[192.168.80.5]:47668, remoteUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=2ac6e46d-90f5-4637-b224-f7f78977b1af, clientName=hz.client_6, authenticated=true, clientVersion=1.4.1, creationTime=1706661114221, latest clientAttributes=null, labels=[]}
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connection[id=4, /192.168.80.2:5701->/192.168.80.5:50444, qualifier=null, endpoint=[192.168.80.5]:50444, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.event-1] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=6, /192.168.80.2:5701->/192.168.80.5:39158, qualifier=null, endpoint=[192.168.80.5]:39158, remoteUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=0ea682f2-20d2-4bbc-9ac8-ef68a340328e, clientName=hz.client_4, authenticated=true, clientVersion=1.4.1, creationTime=1706661082376, latest clientAttributes=null, labels=[]}
+hazelcast_3_1        | 2024-01-31 00:32:03,309 [ INFO] [hz.serene_greider.event-2] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=5, /192.168.80.2:5701->/192.168.80.5:35814, qualifier=null, endpoint=[192.168.80.5]:35814, remoteUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=d4fba4f3-20d9-49d9-9d91-4675c6c98ba4, clientName=hz.client_3, authenticated=true, clientVersion=1.4.1, creationTime=1706661070217, latest clientAttributes=null, labels=[]}
+hazelcast_3_1        | 2024-01-31 00:32:03,310 [ INFO] [hz.serene_greider.event-2] [c.h.c.i.ClientEndpointManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=4, /192.168.80.2:5701->/192.168.80.5:50444, qualifier=null, endpoint=[192.168.80.5]:50444, remoteUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=4c8acd57-42e1-4844-9b4a-b350711b368f, clientName=hz.client_2, authenticated=true, clientVersion=1.4.1, creationTime=1706661043457, latest clientAttributes=null, labels=[]}
+hazelcast_2_1        | 2024-01-31 00:32:03,310 [ INFO] [hz.sad_newton.event-4] [c.h.c.i.ClientEndpointManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=4, /192.168.80.4:5701->/192.168.80.5:60946, qualifier=null, endpoint=[192.168.80.5]:60946, remoteUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=9d672142-4e8e-4087-bf8e-84bbe6161684, clientName=hz.client_1, authenticated=true, clientVersion=1.4.1, creationTime=1706661032827, latest clientAttributes=null, labels=[]}
+tester-container exited with code 0
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping hazelcast_management-center_1 ... done
+Stopping hazelcast_hazelcast_2_1       ... done
+Stopping hazelcast_hazelcast_1_1       ... done
+Stopping hazelcast_hazelcast_3_1       ... done
