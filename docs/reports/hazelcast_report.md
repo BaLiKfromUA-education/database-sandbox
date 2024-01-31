@@ -25,7 +25,7 @@
 | Atomic Long                   | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 9,076 sec         |
 
 
-### Proofs that CP enabled
+### Proofs that CP subsystem is enabled
 
 Can be found in [logs](../raw_data/hazelcast_test_without_lock_case.log):
 ```
