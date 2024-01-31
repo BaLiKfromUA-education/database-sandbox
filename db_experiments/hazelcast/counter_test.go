@@ -2,9 +2,12 @@ package hazelcast
 
 import (
 	"context"
+	"fmt"
 	"github.com/stretchr/testify/require"
 	"log"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestCounterWithoutBlocking(t *testing.T) {
@@ -96,4 +99,69 @@ func TestCounterWithAtomicLong(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, int64(100_000), value)
+}
+
+func BenchmarkCounterWithoutBlocking(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+
+		// GIVEN
+		ctx := context.TODO()
+		counter := CreateDao(ctx)
+
+		rand.Seed(time.Now().Unix())
+		mapName := fmt.Sprintf("without_blocking_%d", rand.Int())
+		keyName := mapName + "_key"
+
+		distMap := counter.GetMap(ctx, mapName)
+		_ = distMap.Set(ctx, keyName, 0)
+
+		b.StartTimer() // Important!
+
+		// MEASURE
+		counter.ExecuteCounterWithoutBlocking(ctx, mapName, keyName)
+	}
+}
+
+func BenchmarkCounterWithOptimisticBlocking(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+
+		// GIVEN
+		ctx := context.TODO()
+		counter := CreateDao(ctx)
+
+		rand.Seed(time.Now().Unix())
+		mapName := fmt.Sprintf("optimistic_blocking_%d", rand.Int())
+		keyName := mapName + "_key"
+
+		distMap := counter.GetMap(ctx, mapName)
+		_ = distMap.Set(ctx, keyName, 0)
+
+		b.StartTimer() // Important!
+
+		// MEASURE
+		counter.ExecuteCounterWithOptimisticBlocking(ctx, mapName, keyName, false)
+	}
+}
+
+func BenchmarkCounterWithAtomicLong(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+
+		// GIVEN
+		ctx := context.TODO()
+		counter := CreateDao(ctx)
+
+		rand.Seed(time.Now().Unix())
+		name := fmt.Sprintf("atomic_counter_%d", rand.Int())
+
+		atomic := counter.GetAtomicLong(ctx, name)
+		_ = atomic.Set(ctx, 0)
+
+		b.StartTimer() // Important!
+
+		// MEASURE
+		counter.ExecuteCounterWithAtomicLong(ctx, name)
+	}
 }
