@@ -52,6 +52,15 @@ func (dao *CounterDao) GetMap(ctx context.Context, name string) *hazelcast.Map {
 	return distMap
 }
 
+func (dao *CounterDao) GetAtomicLong(ctx context.Context, name string) *hazelcast.AtomicLong {
+	cp := dao.client.CPSubsystem()
+	counter, err := cp.GetAtomicLong(ctx, name)
+	if err != nil {
+		log.Fatalf("Failed to get atomic long: %v", err)
+	}
+	return counter
+}
+
 func (dao *CounterDao) execute(ctx context.Context, name string, key string, task func(context.Context, string, *hazelcast.Map, *sync.WaitGroup)) {
 	var wg sync.WaitGroup
 	n := 10
@@ -89,7 +98,7 @@ func (dao *CounterDao) counterWithPessimisticBlockingImpl(ctx context.Context, k
 	defer wg.Done()
 
 	for i := 0; i < 10_000; i++ {
-		if i%1000 == 0 {
+		if i%100 == 0 {
 			log.Printf("[Pessimistic] At %d\n", i)
 		}
 
@@ -173,4 +182,26 @@ func (dao *CounterDao) ExecuteCounterWithOptimisticBlocking(ctx context.Context,
 		log.Printf("Number of misses: %d\n", dao.misses.Load())
 	}
 	dao.debugMode.Store(false)
+}
+
+func (dao *CounterDao) counterWithAtomicLongImpl(ctx context.Context, counter *hazelcast.AtomicLong, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for j := 0; j < 10_000; j++ {
+		_, err := counter.IncrementAndGet(ctx)
+		if err != nil {
+			log.Fatalf("Failed to increment counter: %v", err)
+		}
+	}
+}
+
+func (dao *CounterDao) ExecuteCounterWithAtomicLong(ctx context.Context, name string) {
+	counter := dao.GetAtomicLong(ctx, name)
+	wg := sync.WaitGroup{}
+	wg.Add(10)
+
+	for i := 0; i < 10; i++ {
+		go dao.counterWithAtomicLongImpl(ctx, counter, &wg)
+	}
+
+	wg.Wait()
 }

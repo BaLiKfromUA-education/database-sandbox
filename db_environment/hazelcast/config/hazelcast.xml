@@ -6,6 +6,7 @@
 
     <cp-subsystem>
         <cp-member-count>3</cp-member-count>
+        <group-size>3</group-size>
     </cp-subsystem>
 
 </hazelcast>
