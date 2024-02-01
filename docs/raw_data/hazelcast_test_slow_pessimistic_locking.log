@@ -1,0 +1,454 @@
+(venv) balik@balik:~/Desktop/database-sandbox/db_environment/hazelcast$ docker-compose -f docker_compose.yaml  up
+Creating network "hazelcast_isolated_network" with driver "bridge"
+Creating hazelcast_hazelcast_3_1 ... done
+Creating hazelcast_hazelcast_1_1 ... done
+Creating hazelcast_hazelcast_2_1 ... done
+Creating hazelcast_management-center_1 ... done
+Creating tester-container              ... done
+Attaching to hazelcast_hazelcast_1_1, hazelcast_hazelcast_3_1, hazelcast_hazelcast_2_1, tester-container, hazelcast_management-center_1
+hazelcast_1_1        | ########################################
+hazelcast_1_1        | # JAVA=/usr/bin/java
+hazelcast_1_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_1_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_1_1        | ########################################
+hazelcast_2_1        | ########################################
+hazelcast_2_1        | # JAVA=/usr/bin/java
+hazelcast_2_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_2_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_2_1        | ########################################
+hazelcast_3_1        | ########################################
+hazelcast_3_1        | # JAVA=/usr/bin/java
+hazelcast_3_1        | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/host-config/hazelcast.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_3_1        | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_3_1        | ########################################
+management-center_1  | WARNING: package com.ibm.lang.management.internal not in jdk.management
+hazelcast_1_1        | 2024-02-01 23:09:07,019 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_1_1        | 2024-02-01 23:09:07,021 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_2_1        | 2024-02-01 23:09:07,021 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_2_1        | 2024-02-01 23:09:07,023 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_3_1        | 2024-02-01 23:09:07,021 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/host-config/hazelcast.xml' from System property 'hazelcast.config'
+hazelcast_3_1        | 2024-02-01 23:09:07,024 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/host-config/hazelcast.xml
+hazelcast_3_1        | 2024-02-01 23:09:07,491 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_3:5701,hazelcast.clustername=distributed_databases]
+hazelcast_2_1        | 2024-02-01 23:09:07,492 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_2:5701,hazelcast.clustername=distributed_databases]
+hazelcast_1_1        | 2024-02-01 23:09:07,496 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_1:5701,hazelcast.clustername=distributed_databases]
+hazelcast_1_1        | 2024-02-01 23:09:07,547 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_1]:5701
+hazelcast_2_1        | 2024-02-01 23:09:07,547 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_2]:5701
+hazelcast_3_1        | 2024-02-01 23:09:07,547 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [distributed_databases] [5.1.7] Using public address: [hazelcast_3]:5701
+hazelcast_3_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.s.logo]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_3_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_3_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_3_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_3_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_3_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_3_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_3]:5701
+hazelcast_1_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.s.logo]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_1_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_1_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_1_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_1_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_3_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_2_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.s.logo]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |  +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_2_1        |  + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_2_1        |  + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_2_1        |  + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_2_1        |  +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_1_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_3_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_3_1        | To enable integrity checker do one of the following:
+hazelcast_3_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_3_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_3_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        | 2024-02-01 23:09:07,577 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_1]:5701
+hazelcast_2_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_2_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_2]:5701
+hazelcast_1_1        | 2024-02-01 23:09:07,577 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_2_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Cluster name: distributed_databases
+hazelcast_1_1        | 2024-02-01 23:09:07,577 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_1_1        | To enable integrity checker do one of the following:
+hazelcast_1_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_1_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_1_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        | 2024-02-01 23:09:07,576 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_2_1        | To enable integrity checker do one of the following:
+hazelcast_2_1        |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_2_1        |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_2_1        |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        | 2024-02-01 23:09:07,579 [ INFO] [main] [c.h.system]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_3_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_3_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_3_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_3_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_3_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        | 2024-02-01 23:09:07,579 [ INFO] [main] [c.h.system]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_2_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_2_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_2_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_2_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_2_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        | 2024-02-01 23:09:07,580 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] The Jet engine is disabled.
+hazelcast_1_1        | To enable the Jet engine on the members, do one of the following:
+hazelcast_1_1        |   - Change member config using Java API: config.getJetConfig().setEnabled(true)
+hazelcast_1_1        |   - Change XML/YAML configuration property: Set hazelcast.jet.enabled to true
+hazelcast_1_1        |   - Add system property: -Dhz.jet.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1        |   - Add environment variable: HZ_JET_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+management-center_1  | Trying to upgrade H2 in /data
+management-center_1  | Clean start. Nothing to upgrade
+management-center_1  | Container support enabled. Using automatic heap sizing. JVM will use up to 80% of the memory limit of the host.
+management-center_1  | + exec java -server '-Dloader.path=/opt/hazelcast/management-center/bin/user-lib/*' --add-opens java.base/java.lang=ALL-UNNAMED --add-opens jdk.management/com.ibm.lang.management.internal=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED -Dhazelcast.mc.home=/data -Djava.net.preferIPv4Stack=true -XX:+UseContainerSupport -XX:MaxRAMPercentage=80 -cp /opt/hazelcast/management-center/bin/../hazelcast-management-center-5.4-SNAPSHOT.jar org.springframework.boot.loader.launch.PropertiesLauncher
+management-center_1  | WARNING: package com.ibm.lang.management.internal not in jdk.management
+hazelcast_3_1        | 2024-02-01 23:09:08,090 [ INFO] [main] [c.h.s.security]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_2_1        | 2024-02-01 23:09:08,090 [ INFO] [main] [c.h.s.security]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_1_1        | 2024-02-01 23:09:08,090 [ INFO] [main] [c.h.s.security]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_2_1        | 2024-02-01 23:09:08,198 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_2_1        | 2024-02-01 23:09:08,203 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_3_1        | 2024-02-01 23:09:08,222 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_1_1        | 2024-02-01 23:09:08,223 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Using Multicast discovery
+hazelcast_3_1        | 2024-02-01 23:09:08,227 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_1_1        | 2024-02-01 23:09:08,228 [ INFO] [main] [c.h.c.CPSubsystem]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CP Subsystem is enabled with 3 members.
+hazelcast_3_1        | 2024-02-01 23:09:08,518 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_1_1        | 2024-02-01 23:09:08,520 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_2_1        | 2024-02-01 23:09:08,520 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_2_1        | 2024-02-01 23:09:08,532 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] [hazelcast_2]:5701 is STARTING
+hazelcast_1_1        | 2024-02-01 23:09:08,535 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] [hazelcast_1]:5701 is STARTING
+hazelcast_3_1        | 2024-02-01 23:09:08,540 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] [hazelcast_3]:5701 is STARTING
+management-center_1  | 2024-02-01 23:09:09,731 [ INFO] [main] [c.h.w.MCApplication]: Starting MCApplication using Java 21.0.2 with PID 1 (/opt/hazelcast/management-center/hazelcast-management-center-5.4-SNAPSHOT.jar started by hazelcast in /opt/hazelcast/management-center)
+management-center_1  | 2024-02-01 23:09:09,750 [ INFO] [main] [c.h.w.MCApplication]: No active profile set, falling back to 1 default profile: "default"
+hazelcast_1_1        | 2024-02-01 23:09:10,897 [ INFO] [main] [c.h.i.c.ClusterService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | Members {size:1, ver:1} [
+hazelcast_1_1        |  Member [hazelcast_1]:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c this
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-02-01 23:09:10,907 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] [hazelcast_1]:5701 is STARTED
+hazelcast_3_1        | 2024-02-01 23:09:10,961 [ INFO] [main] [c.h.i.c.i.MulticastJoiner]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Trying to join to discovered node: [hazelcast_1]:5701
+hazelcast_1_1        | 2024-02-01 23:09:10,982 [ INFO] [hz.romantic_chaplygin.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.2:5701 and /172.19.0.3:40349
+hazelcast_3_1        | 2024-02-01 23:09:10,984 [ INFO] [hz.condescending_cray.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.3:40349 and hazelcast_1/172.19.0.2:5701
+hazelcast_2_1        | 2024-02-01 23:09:11,016 [ INFO] [main] [c.h.i.c.i.MulticastJoiner]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Trying to join to discovered node: [hazelcast_1]:5701
+hazelcast_1_1        | 2024-02-01 23:09:11,034 [ INFO] [hz.romantic_chaplygin.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.2:5701 and /172.19.0.4:38951
+hazelcast_2_1        | 2024-02-01 23:09:11,036 [ INFO] [hz.pensive_lalande.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.4:38951 and hazelcast_1/172.19.0.2:5701
+hazelcast_1_1        | 2024-02-01 23:09:11,502 [ INFO] [hz.romantic_chaplygin.cached.thread-2] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CP Subsystem is waiting for 3 members to join the cluster. Current member count: 1
+management-center_1  |
+management-center_1  | UPDATE SUMMARY
+management-center_1  | Run:                         29
+management-center_1  | Previously run:               0
+management-center_1  | Filtered out:                 0
+management-center_1  | -------------------------------
+management-center_1  | Total change sets:           29
+management-center_1  |
+management-center_1  | 2024-02-01 23:09:14,693 [ INFO] [main] [c.h.w.s.s.i.DisableLoginStrategy]: Login will be disabled for 5 seconds after 3 failed login attempts. For every 3 consecutive failed login attempts, disable period will be multiplied by 10.
+management-center_1  | 2024-02-01 23:09:14,748 [ INFO] [main] [c.h.w.m.i.r.RocksDBLoader]: '/tmp' is used as RocksDB shared library directory
+management-center_1  | 2024-02-01 23:09:14,861 [ INFO] [main] [c.h.w.m.i.r.RocksDBLoader]: '/tmp' is used as RocksDB shared library directory
+hazelcast_1_1        | 2024-02-01 23:09:16,135 [ INFO] [hz.romantic_chaplygin.generic-operation.thread-7] [c.h.i.c.ClusterService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | Members {size:3, ver:3} [
+hazelcast_1_1        |  Member [hazelcast_1]:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c this
+hazelcast_1_1        |  Member [hazelcast_3]:5701 - 340a374c-7860-4046-b2f0-bdaa2ba6b56c
+hazelcast_1_1        |  Member [hazelcast_2]:5701 - ac8585aa-0556-4292-bf39-afb74a2b50a7
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_2_1        | 2024-02-01 23:09:16,148 [ INFO] [hz.pensive_lalande.priority-generic-operation.thread-0] [c.h.i.c.ClusterService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | Members {size:3, ver:3} [
+hazelcast_2_1        |  Member [hazelcast_1]:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c
+hazelcast_2_1        |  Member [hazelcast_3]:5701 - 340a374c-7860-4046-b2f0-bdaa2ba6b56c
+hazelcast_2_1        |  Member [hazelcast_2]:5701 - ac8585aa-0556-4292-bf39-afb74a2b50a7 this
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_3_1        | 2024-02-01 23:09:16,148 [ INFO] [hz.condescending_cray.generic-operation.thread-3] [c.h.i.c.ClusterService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | Members {size:3, ver:3} [
+hazelcast_3_1        |  Member [hazelcast_1]:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c
+hazelcast_3_1        |  Member [hazelcast_3]:5701 - 340a374c-7860-4046-b2f0-bdaa2ba6b56c this
+hazelcast_3_1        |  Member [hazelcast_2]:5701 - ac8585aa-0556-4292-bf39-afb74a2b50a7
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_2_1        | 2024-02-01 23:09:16,150 [ INFO] [hz.pensive_lalande.cached.thread-4] [c.h.i.s.t.TcpServerConnector]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Connecting to hazelcast_3/172.19.0.3:5701, timeout: 10000, bind-any: true
+hazelcast_3_1        | 2024-02-01 23:09:16,152 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.i.s.t.TcpServerConnector]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Connecting to hazelcast_2/172.19.0.4:5701, timeout: 10000, bind-any: true
+hazelcast_3_1        | 2024-02-01 23:09:16,166 [ INFO] [hz.condescending_cray.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.3:5701 and /172.19.0.4:60311
+hazelcast_2_1        | 2024-02-01 23:09:16,173 [ INFO] [hz.pensive_lalande.IO.thread-in-1] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.4:60311 and hazelcast_3/172.19.0.3:5701
+hazelcast_2_1        | 2024-02-01 23:09:16,174 [ INFO] [hz.pensive_lalande.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.4:5701 and /172.19.0.3:38283
+hazelcast_3_1        | 2024-02-01 23:09:16,175 [ INFO] [hz.condescending_cray.IO.thread-in-2] [c.h.i.s.t.TcpServerConnection]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Initialized new cluster connection between /172.19.0.3:38283 and hazelcast_2/172.19.0.4:5701
+hazelcast_1_1        | 2024-02-01 23:09:16,523 [ INFO] [hz.romantic_chaplygin.cached.thread-2] [c.h.c.i.RaftService]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='9071e00c-d172-455f-bd74-0fe1670d7c1c'}, RaftEndpoint{uuid='ac8585aa-0556-4292-bf39-afb74a2b50a7'}, RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}]
+hazelcast_1_1        | 2024-02-01 23:09:16,524 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_3_1        | 2024-02-01 23:09:16,525 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.RaftService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='9071e00c-d172-455f-bd74-0fe1670d7c1c'}, RaftEndpoint{uuid='ac8585aa-0556-4292-bf39-afb74a2b50a7'}, RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}]
+hazelcast_2_1        | 2024-02-01 23:09:16,526 [ INFO] [hz.pensive_lalande.cached.thread-3] [c.h.c.i.RaftService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] RaftNode[CPGroupId{name='METADATA', seed=0, groupId=0}] is created with [RaftEndpoint{uuid='9071e00c-d172-455f-bd74-0fe1670d7c1c'}, RaftEndpoint{uuid='ac8585aa-0556-4292-bf39-afb74a2b50a7'}, RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}]
+hazelcast_1_1        | 2024-02-01 23:09:16,526 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.i.p.i.PartitionStateManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Initializing cluster partition table arrangement...
+hazelcast_3_1        | 2024-02-01 23:09:16,527 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+hazelcast_2_1        | 2024-02-01 23:09:16,528 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Status is set to: ACTIVE
+management-center_1  | 2024-02-01 23:09:17,148 [ INFO] [main] [c.h.w.MCApplication]: Started MCApplication in 8.061 seconds (process running for 9.34)
+management-center_1  | 2024-02-01 23:09:17,154 [ INFO] [task-20] [c.h.w.MCApplication]:
+management-center_1  |
+management-center_1  | Hazelcast Management Center successfully started at http://localhost:8080
+management-center_1  |
+management-center_1  | 2024-02-01 23:09:17,155 [ INFO] [task-20] [c.h.w.MCApplication]: Hazelcast Management Center 5.4-SNAPSHOT (20240129 - f762587), Hazelcast client version: 5.4.0-SNAPSHOT, embedded Jetty version: 12.0.4, CLC version 5.3.5
+hazelcast_2_1        | 2024-02-01 23:09:17,163 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] [hazelcast_2]:5701 is STARTED
+hazelcast_3_1        | 2024-02-01 23:09:17,164 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] [hazelcast_3]:5701 is STARTED
+management-center_1  | 2024-02-01 23:09:17,173 [ INFO] [task-13] [c.h.w.s.ClusterManager]: Connecting to 0 enabled cluster(s) on startup.
+hazelcast_3_1        | 2024-02-01 23:09:18,642 [ WARN] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.RaftNodeImpl$LeaderFailureDetectionTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] We are FOLLOWER and there is no current leader. Will start new election round...
+hazelcast_3_1        | 2024-02-01 23:09:18,643 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.t.PreVoteTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Pre-vote started for next term: 1, last log index: 0, last log term: 0
+hazelcast_3_1        | 2024-02-01 23:09:18,643 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: METADATA(0), size:3, term:0, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} - FOLLOWER this
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_1_1        | 2024-02-01 23:09:18,645 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_2_1        | 2024-02-01 23:09:18,645 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted pre-vote for PreVoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, nextTerm=1, lastLogTerm=0, lastLogIndex=0}
+hazelcast_3_1        | 2024-02-01 23:09:18,648 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Pre-vote granted from RaftEndpoint{uuid='9071e00c-d172-455f-bd74-0fe1670d7c1c'} for term: 1, number of votes: 2, majority: 2
+hazelcast_3_1        | 2024-02-01 23:09:18,648 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] We have the majority during pre-vote phase. Let's start real election!
+hazelcast_3_1        | 2024-02-01 23:09:18,649 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.t.LeaderElectionTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Leader election started for term: 1, last log index: 0, last log term: 0
+hazelcast_3_1        | 2024-02-01 23:09:18,650 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} - CANDIDATE this
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_3_1        | 2024-02-01 23:09:18,651 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.PreVoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Ignored PreVoteResponse{voter=RaftEndpoint{uuid='ac8585aa-0556-4292-bf39-afb74a2b50a7'}, term=1, granted=true}. We are not FOLLOWER anymore.
+hazelcast_2_1        | 2024-02-01 23:09:18,652 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_2_1        | 2024-02-01 23:09:18,653 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}
+hazelcast_2_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701}
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_1_1        | 2024-02-01 23:09:18,653 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Moving to new term: 1 from current term: 0 after VoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_2_1        | 2024-02-01 23:09:18,653 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_1_1        | 2024-02-01 23:09:18,654 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} - FOLLOWER this
+hazelcast_1_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}
+hazelcast_1_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701}
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_1_1        | 2024-02-01 23:09:18,654 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteRequestHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Granted vote for VoteRequest{candidate=RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}, term=1, lastLogTerm=0, lastLogIndex=0, disruptive=false}
+hazelcast_3_1        | 2024-02-01 23:09:18,656 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Vote granted from RaftEndpoint{uuid='9071e00c-d172-455f-bd74-0fe1670d7c1c'} for term: 1, number of votes: 2, majority: 2
+hazelcast_3_1        | 2024-02-01 23:09:18,656 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] We are the LEADER!
+hazelcast_3_1        | 2024-02-01 23:09:18,659 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7]
+hazelcast_3_1        |
+hazelcast_3_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} - LEADER this
+hazelcast_3_1        | ]
+hazelcast_3_1        |
+hazelcast_1_1        | 2024-02-01 23:09:18,662 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.h.AppendRequestHandlerTask(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}
+hazelcast_1_1        | 2024-02-01 23:09:18,662 [ INFO] [hz.romantic_chaplygin.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_1]:5701 [distributed_databases] [5.1.7]
+hazelcast_1_1        |
+hazelcast_1_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_1_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} - FOLLOWER this
+hazelcast_1_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}
+hazelcast_1_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} - LEADER
+hazelcast_1_1        | ]
+hazelcast_1_1        |
+hazelcast_3_1        | 2024-02-01 23:09:18,666 [ INFO] [hz.condescending_cray.partition-operation.thread-0] [c.h.c.i.r.i.h.VoteResponseHandlerTask(METADATA)]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Ignored VoteResponse{voter=RaftEndpoint{uuid='ac8585aa-0556-4292-bf39-afb74a2b50a7'}, term=1, granted=true}. We are not CANDIDATE anymore.
+hazelcast_2_1        | 2024-02-01 23:09:18,671 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.h.AppendRequestHandlerTask(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Setting leader: RaftEndpoint{uuid='340a374c-7860-4046-b2f0-bdaa2ba6b56c'}
+hazelcast_2_1        | 2024-02-01 23:09:18,671 [ INFO] [hz.pensive_lalande.partition-operation.thread-0] [c.h.c.i.r.i.RaftNode(METADATA)]: [hazelcast_2]:5701 [distributed_databases] [5.1.7]
+hazelcast_2_1        |
+hazelcast_2_1        | CP Group Members {groupId: METADATA(0), size:3, term:1, logIndex:0} [
+hazelcast_2_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}
+hazelcast_2_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} - FOLLOWER this
+hazelcast_2_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} - LEADER
+hazelcast_2_1        | ]
+hazelcast_2_1        |
+hazelcast_2_1        | 2024-02-01 23:09:19,239 [ INFO] [hz.pensive_lalande.cached.thread-3] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}, CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}, CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701}]
+hazelcast_3_1        | 2024-02-01 23:09:19,239 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}, CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}, CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701}]
+hazelcast_1_1        | 2024-02-01 23:09:19,240 [ INFO] [hz.romantic_chaplygin.cached.thread-2] [c.h.c.i.MetadataRaftGroupManager]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] CP Subsystem is initialized with: [CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701}, CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701}, CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701}]
+tester-container     | 2024/02/01 23:09:24 INFO : trying to connect to cluster: distributed_databases
+hazelcast_1_1        | 2024-02-01 23:09:24,640 [ INFO] [hz.romantic_chaplygin.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=3, /172.19.0.2:5701->/172.19.0.5:51844, qualifier=null, endpoint=[172.19.0.5]:51844, remoteUuid=14b2a692-827a-4e8d-9313-f5163ea98c96, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 14b2a692-827a-4e8d-9313-f5163ea98c96, client name: hz.client_1, client version: 1.4.1
+tester-container     | 2024/02/01 23:09:24 INFO : connected to cluster: distributed_databases
+tester-container     | 2024/02/01 23:09:24 INFO :
+tester-container     |
+tester-container     | Members {size:3, ver:3} [
+tester-container     |  Member hazelcast_1:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c
+tester-container     |  Member hazelcast_3:5701 - 340a374c-7860-4046-b2f0-bdaa2ba6b56c
+tester-container     |  Member hazelcast_2:5701 - ac8585aa-0556-4292-bf39-afb74a2b50a7
+tester-container     | ]
+tester-container     |
+hazelcast_3_1        | 2024-02-01 23:09:24,651 [ INFO] [hz.condescending_cray.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /172.19.0.3:5701->/172.19.0.5:57684, qualifier=null, endpoint=[172.19.0.5]:57684, remoteUuid=14b2a692-827a-4e8d-9313-f5163ea98c96, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 14b2a692-827a-4e8d-9313-f5163ea98c96, client name: hz.client_1, client version: 1.4.1
+hazelcast_2_1        | 2024-02-01 23:09:24,659 [ INFO] [hz.pensive_lalande.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /172.19.0.4:5701->/172.19.0.5:44724, qualifier=null, endpoint=[172.19.0.5]:44724, remoteUuid=14b2a692-827a-4e8d-9313-f5163ea98c96, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: 14b2a692-827a-4e8d-9313-f5163ea98c96, client name: hz.client_1, client version: 1.4.1
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:24 [Pessimistic] At 0
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+tester-container     | 2024/02/01 23:09:50 [Pessimistic] At 100
+hazelcast_3_1        | 2024-02-01 23:10:19,247 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:10:19,247 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:10:33 [Pessimistic] At 200
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+tester-container     | 2024/02/01 23:11:16 [Pessimistic] At 300
+hazelcast_3_1        | 2024-02-01 23:11:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:11:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:11:59 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:12:00 [Pessimistic] At 400
+tester-container     | 2024/02/01 23:12:00 [Pessimistic] At 400
+hazelcast_3_1        | 2024-02-01 23:12:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:12:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+tester-container     | 2024/02/01 23:12:43 [Pessimistic] At 500
+hazelcast_3_1        | 2024-02-01 23:13:19,246 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:13:19,246 [ INFO] [hz.condescending_cray.cached.thread-4] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:25 [Pessimistic] At 600
+tester-container     | 2024/02/01 23:13:26 [Pessimistic] At 600
+hazelcast_3_1        | 2024-02-01 23:13:36,329 [ INFO] [hz.condescending_cray.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=5, /172.19.0.3:5701->/172.19.0.6:46763, qualifier=null, endpoint=[172.19.0.6]:46763, remoteUuid=89f50a9a-d3c1-4b46-8215-cdf650abbce5, alive=true, connectionType=MCJVM, planeIndex=-1], successfully authenticated, clientUuid: 89f50a9a-d3c1-4b46-8215-cdf650abbce5, client name: MC-Client-distributed_databases, client version: 5.4.0-SNAPSHOT
+management-center_1  | 2024-02-01 23:13:36,336 [ INFO] [MC-Client-distributed_databases.lifecycle-1] [c.h.w.s.MCClientManager]: MC Client connected to cluster distributed_databases.
+management-center_1  | 2024-02-01 23:13:36,348 [ INFO] [MC-Client-distributed_databases.event-1] [c.h.w.s.MCClientManager]: Started communication with member: Member [hazelcast_1]:5701 - 9071e00c-d172-455f-bd74-0fe1670d7c1c
+management-center_1  | 2024-02-01 23:13:36,349 [ INFO] [MC-Client-distributed_databases.event-1] [c.h.w.s.MCClientManager]: Started communication with member: Member [hazelcast_2]:5701 - ac8585aa-0556-4292-bf39-afb74a2b50a7
+management-center_1  | 2024-02-01 23:13:36,349 [ INFO] [MC-Client-distributed_databases.event-1] [c.h.w.s.MCClientManager]: Started communication with member: Member [hazelcast_3]:5701 - 340a374c-7860-4046-b2f0-bdaa2ba6b56c
+hazelcast_2_1        | 2024-02-01 23:13:37,284 [ INFO] [hz.pensive_lalande.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_2]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=5, /172.19.0.4:5701->/172.19.0.6:38975, qualifier=null, endpoint=[172.19.0.6]:38975, remoteUuid=89f50a9a-d3c1-4b46-8215-cdf650abbce5, alive=true, connectionType=MCJVM, planeIndex=-1], successfully authenticated, clientUuid: 89f50a9a-d3c1-4b46-8215-cdf650abbce5, client name: MC-Client-distributed_databases, client version: 5.4.0-SNAPSHOT
+hazelcast_1_1        | 2024-02-01 23:13:37,284 [ INFO] [hz.romantic_chaplygin.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [distributed_databases] [5.1.7] Received auth from Connection[id=4, /172.19.0.2:5701->/172.19.0.6:54361, qualifier=null, endpoint=[172.19.0.6]:54361, remoteUuid=89f50a9a-d3c1-4b46-8215-cdf650abbce5, alive=true, connectionType=MCJVM, planeIndex=-1], successfully authenticated, clientUuid: 89f50a9a-d3c1-4b46-8215-cdf650abbce5, client name: MC-Client-distributed_databases, client version: 5.4.0-SNAPSHOT
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+tester-container     | 2024/02/01 23:14:07 [Pessimistic] At 700
+hazelcast_3_1        | 2024-02-01 23:14:19,245 [ INFO] [hz.condescending_cray.cached.thread-1] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:14:19,246 [ INFO] [hz.condescending_cray.cached.thread-1] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+tester-container     | 2024/02/01 23:14:49 [Pessimistic] At 800
+hazelcast_3_1        | 2024-02-01 23:15:19,245 [ INFO] [hz.condescending_cray.cached.thread-2] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:15:19,246 [ INFO] [hz.condescending_cray.cached.thread-2] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:15:31 [Pessimistic] At 900
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+tester-container     | 2024/02/01 23:16:13 [Pessimistic] At 1000
+hazelcast_3_1        | 2024-02-01 23:16:19,245 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:16:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+tester-container     | 2024/02/01 23:16:56 [Pessimistic] At 1100
+hazelcast_3_1        | 2024-02-01 23:17:19,246 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] Current leadership claims:
+hazelcast_3_1        |  CPMember{uuid=9071e00c-d172-455f-bd74-0fe1670d7c1c, address=[hazelcast_1]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=340a374c-7860-4046-b2f0-bdaa2ba6b56c, address=[hazelcast_3]:5701} has 0,
+hazelcast_3_1        |  CPMember{uuid=ac8585aa-0556-4292-bf39-afb74a2b50a7, address=[hazelcast_2]:5701} has 0 leaderships.
+hazelcast_3_1        | 2024-02-01 23:17:19,247 [ INFO] [hz.condescending_cray.cached.thread-3] [c.h.c.i.RaftGroupMembershipManager]: [hazelcast_3]:5701 [distributed_databases] [5.1.7] CPGroup leadership balance is fine, cannot rebalance further...
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping hazelcast_management-center_1 ... done
+Stopping tester-container              ... done
+Stopping hazelcast_hazelcast_2_1       ... done
+Stopping hazelcast_hazelcast_1_1       ... done
+Stopping hazelcast_hazelcast_3_1       ... done
