@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  tester:
+    build:
+      context: ../../
+      dockerfile: build/Dockerfile
+    container_name: tester-container
+    networks:
+      - isolated_network
+    depends_on:
+      - hazelcast_1
+    environment:
+      - HAZELCAST_ADDRESSES=hazelcast_1:5701
+
+
+  hazelcast_1:
+    image: hazelcast/hazelcast:5.1.7
+    networks:
+      - isolated_network
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=hazelcast_1:5701
+      - HZ_CLUSTERNAME=test_lock
+
+networks:
+  isolated_network:
+    driver: bridge

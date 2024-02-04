@@ -1,0 +1,160 @@
+(venv) balik@balik:~/Desktop/database-sandbox/db_environment/hazelcast$ docker-compose -f pessimistic_lock_experiment.yaml  up
+Creating network "hazelcast_isolated_network" with driver "bridge"
+Creating hazelcast_hazelcast_1_1 ... done
+Creating tester-container        ... done
+Attaching to hazelcast_hazelcast_1_1, tester-container
+hazelcast_1_1  | ########################################
+hazelcast_1_1  | # JAVA=/usr/bin/java
+hazelcast_1_1  | # JAVA_OPTS=--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED -Dhazelcast.logging.type=log4j2 -Dlog4j.configurationFile=file:/opt/hazelcast/config/log4j2.properties -Dhazelcast.config=/opt/hazelcast/config/hazelcast-docker.xml -Djet.custom.lib.dir=/opt/hazelcast/custom-lib -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=80.0 -XX:MaxGCPauseMillis=5
+hazelcast_1_1  | # CLASSPATH=/opt/hazelcast/*:/opt/hazelcast/lib:/opt/hazelcast/lib/*:/opt/hazelcast/bin/user-lib:/opt/hazelcast/bin/user-lib/*
+hazelcast_1_1  | ########################################
+hazelcast_1_1  | 2024-02-04 22:24:39,000 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Loading configuration '/opt/hazelcast/config/hazelcast-docker.xml' from System property 'hazelcast.config'
+hazelcast_1_1  | 2024-02-04 22:24:39,001 [ INFO] [main] [c.h.i.c.AbstractConfigLocator]: Using configuration file at /opt/hazelcast/config/hazelcast-docker.xml
+hazelcast_1_1  | 2024-02-04 22:24:39,263 [ INFO] [main] [c.h.i.c.o.ExternalConfigurationOverride]: Detected external configuration entries in environment variables: [hazelcast.network.publicaddress=hazelcast_1:5701,hazelcast.clustername=test_lock]
+hazelcast_1_1  | 2024-02-04 22:24:39,295 [ INFO] [main] [c.h.i.AddressPicker]: [LOCAL] [test_lock] [5.1.7] Using public address: [hazelcast_1]:5701
+hazelcast_1_1  | 2024-02-04 22:24:39,319 [ INFO] [main] [c.h.s.logo]: [hazelcast_1]:5701 [test_lock] [5.1.7]
+hazelcast_1_1  |        +       +  o    o     o     o---o o----o o      o---o     o     o----o o--o--o
+hazelcast_1_1  |        + +   + +  |    |    / \       /  |      |     /         / \    |         |
+hazelcast_1_1  |        + + + + +  o----o   o   o     o   o----o |    o         o   o   o----o    |
+hazelcast_1_1  |        + +   + +  |    |  /     \   /    |      |     \       /     \       |    |
+hazelcast_1_1  |        +       +  o    o o       o o---o o----o o----o o---o o       o o----o    o
+hazelcast_1_1  | 2024-02-04 22:24:39,320 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [test_lock] [5.1.7] Copyright (c) 2008-2022, Hazelcast, Inc. All Rights Reserved.
+hazelcast_1_1  | 2024-02-04 22:24:39,320 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [test_lock] [5.1.7] Hazelcast Platform 5.1.7 (20230619 - e483744) starting at [hazelcast_1]:5701
+hazelcast_1_1  | 2024-02-04 22:24:39,320 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [test_lock] [5.1.7] Cluster name: test_lock
+hazelcast_1_1  | 2024-02-04 22:24:39,320 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [test_lock] [5.1.7] Integrity Checker is disabled. Fail-fast on corrupted executables will not be performed.
+hazelcast_1_1  | To enable integrity checker do one of the following:
+hazelcast_1_1  |   - Change member config using Java API: config.setIntegrityCheckerEnabled(true);
+hazelcast_1_1  |   - Change XML/YAML configuration property: Set hazelcast.integrity-checker.enabled to true
+hazelcast_1_1  |   - Add system property: -Dhz.integritychecker.enabled=true (for Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1  |   - Add environment variable: HZ_INTEGRITYCHECKER_ENABLED=true (recommended when running container image. For Hazelcast embedded, works only when loading config via Config.load)
+hazelcast_1_1  | 2024-02-04 22:24:39,320 [ INFO] [main] [c.h.system]: [hazelcast_1]:5701 [test_lock] [5.1.7] Jet is enabled
+hazelcast_1_1  | 2024-02-04 22:24:39,599 [ INFO] [main] [c.h.s.security]: [hazelcast_1]:5701 [test_lock] [5.1.7] Enable DEBUG/FINE log level for log category com.hazelcast.system.security  or use -Dhazelcast.security.recommendations system property to see 🔒 security recommendations and the status of current config.
+hazelcast_1_1  | 2024-02-04 22:24:39,647 [ INFO] [main] [c.h.i.i.Node]: [hazelcast_1]:5701 [test_lock] [5.1.7] Using Multicast discovery
+hazelcast_1_1  | 2024-02-04 22:24:39,650 [ WARN] [main] [c.h.c.CPSubsystem]: [hazelcast_1]:5701 [test_lock] [5.1.7] CP Subsystem is not enabled. CP data structures will operate in UNSAFE mode! Please note that UNSAFE mode will not provide strong consistency guarantees.
+hazelcast_1_1  | 2024-02-04 22:24:39,814 [ INFO] [main] [c.h.j.i.JetServiceBackend]: [hazelcast_1]:5701 [test_lock] [5.1.7] Setting number of cooperative threads and default parallelism to 16
+hazelcast_1_1  | 2024-02-04 22:24:39,839 [ INFO] [main] [c.h.i.d.Diagnostics]: [hazelcast_1]:5701 [test_lock] [5.1.7] Diagnostics disabled. To enable add -Dhazelcast.diagnostics.enabled=true to the JVM arguments.
+hazelcast_1_1  | 2024-02-04 22:24:39,845 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [test_lock] [5.1.7] [hazelcast_1]:5701 is STARTING
+hazelcast_1_1  | 2024-02-04 22:24:42,975 [ INFO] [main] [c.h.i.c.ClusterService]: [hazelcast_1]:5701 [test_lock] [5.1.7]
+hazelcast_1_1  |
+hazelcast_1_1  | Members {size:1, ver:1} [
+hazelcast_1_1  |        Member [hazelcast_1]:5701 - 3e50a24e-8c10-4485-9062-a9704d12dbdd this
+hazelcast_1_1  | ]
+hazelcast_1_1  |
+hazelcast_1_1  | 2024-02-04 22:24:42,981 [ INFO] [main] [c.h.j.i.JobCoordinationService]: [hazelcast_1]:5701 [test_lock] [5.1.7] Jet started scanning for jobs
+hazelcast_1_1  | 2024-02-04 22:24:42,983 [ INFO] [main] [c.h.c.LifecycleService]: [hazelcast_1]:5701 [test_lock] [5.1.7] [hazelcast_1]:5701 is STARTED
+tester-container | 2024/02/04 22:24:48 INFO : trying to connect to cluster: test_lock
+hazelcast_1_1  | 2024-02-04 22:24:48,561 [ INFO] [hz.flamboyant_meitner.priority-generic-operation.thread-0] [c.h.c.i.p.t.AuthenticationMessageTask]: [hazelcast_1]:5701 [test_lock] [5.1.7] Received auth from Connection[id=1, /172.28.0.2:5701->/172.28.0.3:53166, qualifier=null, endpoint=[172.28.0.3]:53166, remoteUuid=b20d3502-cc7d-4988-9663-4fe13f69a0d9, alive=true, connectionType=GOO, planeIndex=-1], successfully authenticated, clientUuid: b20d3502-cc7d-4988-9663-4fe13f69a0d9, client name: hz.client_1, client version: 1.4.1
+tester-container | 2024/02/04 22:24:48 INFO : connected to cluster: test_lock
+tester-container | 2024/02/04 22:24:48 INFO :
+tester-container |
+tester-container | Members {size:1, ver:1} [
+tester-container |      Member hazelcast_1:5701 - 3e50a24e-8c10-4485-9062-a9704d12dbdd
+tester-container | ]
+tester-container |
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+tester-container | 2024/02/04 22:24:48 [Pessimistic] At 0
+hazelcast_1_1  | 2024-02-04 22:24:48,579 [ INFO] [hz.flamboyant_meitner.partition-operation.thread-10] [c.h.i.p.i.PartitionStateManager]: [hazelcast_1]:5701 [test_lock] [5.1.7] Initializing cluster partition table arrangement...
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:31:58 [Pessimistic] At 1000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:09 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:10 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:10 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:10 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:39:10 [Pessimistic] At 2000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:46:24 [Pessimistic] At 3000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 22:53:36 [Pessimistic] At 4000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:00:51 [Pessimistic] At 5000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:08:06 [Pessimistic] At 6000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:15:17 [Pessimistic] At 7000
+tester-container | 2024/02/04 23:22:31 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:31 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:31 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:22:32 [Pessimistic] At 8000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:29:46 [Pessimistic] At 9000
+tester-container | 2024/02/04 23:37:01 Pessimistic locking update took 1h12m12.783679237s, value=100000
+hazelcast_1_1  | 2024-02-04 23:37:01,362 [ INFO] [hz.flamboyant_meitner.IO.thread-in-0] [c.h.i.s.t.TcpServerConnection]: [hazelcast_1]:5701 [test_lock] [5.1.7] Connection[id=1, /172.28.0.2:5701->/172.28.0.3:53166, qualifier=null, endpoint=[172.28.0.3]:53166, remoteUuid=b20d3502-cc7d-4988-9663-4fe13f69a0d9, alive=false, connectionType=GOO, planeIndex=-1] closed. Reason: Connection closed by the other side
+hazelcast_1_1  | 2024-02-04 23:37:01,364 [ INFO] [hz.flamboyant_meitner.event-2] [c.h.c.i.ClientEndpointManager]: [hazelcast_1]:5701 [test_lock] [5.1.7] Destroying ClientEndpoint{connection=Connection[id=1, /172.28.0.2:5701->/172.28.0.3:53166, qualifier=null, endpoint=[172.28.0.3]:53166, remoteUuid=b20d3502-cc7d-4988-9663-4fe13f69a0d9, alive=false, connectionType=GOO, planeIndex=-1], clientUuid=b20d3502-cc7d-4988-9663-4fe13f69a0d9, clientName=hz.client_1, authenticated=true, clientVersion=1.4.1, creationTime=1707085488558, latest clientAttributes=null, labels=[]}
+tester-container exited with code 0
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping hazelcast_hazelcast_1_1 ... done
