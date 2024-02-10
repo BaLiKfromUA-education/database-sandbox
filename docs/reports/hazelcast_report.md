@@ -16,11 +16,10 @@
 | Update Strategy               | Final value is always 100k | Number of concurrent clients (co-routines) | Operation per client | CPU                | Number of CPU threads | Time of execution |
 |-------------------------------|----------------------------|--------------------------------------------|----------------------|--------------------|-----------------------|-------------------|
 | Map without blocking          | ❌                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 5,74 sec          |
-| Map with pessimistic blocking | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | TBD ^             |
+| Map with pessimistic blocking | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | [46,83 min](https://github.com/hazelcast/hazelcast-go-client/issues/992)             |
 | Map with optimistic blocking  | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 26,06 sec         |
 | Atomic Long                   | ✅                          | 10                                         | 10 000               | AMD Ryzen 9 5900HS | 16                    | 9,076 sec         |
 
-^ [Check this Slack thread](https://dataengineeri-llm4949.slack.com/archives/C0693JPFVDK/p1706830569162769)
 
 ### Proofs that CP subsystem is enabled
 
