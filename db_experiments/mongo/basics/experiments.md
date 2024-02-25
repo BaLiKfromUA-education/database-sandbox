@@ -1,0 +1,1 @@
+# [Go to report to find scripts](../../../docs/reports/mongo_basics_report.md)
