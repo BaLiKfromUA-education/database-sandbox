@@ -890,6 +890,10 @@ test> db.reviews.insertMany(
 3. Get all reviews
 
 ```js
+db.reviews.find({});
+```
+
+```json
 [
   {
     "_id": {"$oid": "65db725f907e240b7da62f84"},
