@@ -5,7 +5,7 @@ My environment:
 - Run MongoDB instance [via docker-compose](../../db_environment/mongo/docker_compose.yaml)
 - Execute queries via MongoDB console from my JetBrains IDE.
 
-### Items collection
+### Items
 
 1. Create multiple items with different set of properties Phone/TV/Smart Watch/ ....
 
@@ -196,3 +196,614 @@ db.items.distinct("producer");
   }
 ]
 ```
+
+6. Write queries that select items based on various criteria and their combinations:
+    - category and price (in the interval) - construction `$and`:
+
+```js
+db.items.find({category: "Phone", price: {$lt: 1000, $gt: 24}});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01cf"
+    },
+    "category": "Phone",
+    "model": "Samsung Galaxy 42",
+    "price": 42,
+    "producer": "Samsung"
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d0"
+    },
+    "category": "Phone",
+    "model": "iPhone 6",
+    "price": 600,
+    "producer": "Apple"
+  }
+]
+```
+
+- model either one or the other - construction `$or`
+
+```js
+db.items.find({$or: [{model: "Samsung Galaxy 42"}, {model: "G-Shock 42"}]});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01cf"
+    },
+    "category": "Phone",
+    "model": "Samsung Galaxy 42",
+    "price": 42,
+    "producer": "Samsung"
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d6"
+    },
+    "category": "Smart Watch",
+    "model": "G-Shock 42",
+    "price": 400,
+    "producer": "Casio"
+  }
+]
+```
+
+- producer from the list - design `$in`
+
+```js
+db.items.find({producer: {$in: ["LG", "Samsung"]}});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01cf"
+    },
+    "category": "Phone",
+    "model": "Samsung Galaxy 42",
+    "price": 42,
+    "producer": "Samsung"
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d3"
+    },
+    "category": "TV",
+    "model": "LG model 42",
+    "price": 999,
+    "producer": "LG"
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d4"
+    },
+    "category": "TV",
+    "model": "Samsung TV 42",
+    "price": 777,
+    "producer": "Samsung"
+  }
+]
+```
+
+7. Update certain products by changing existing items and
+   add new properties (characteristics) to all items according to a certain criterion.
+
+```js
+db.items.updateMany(
+    {category: "Smart Watch"},
+    {
+        $set: {sale: true, model: "Sale model 42"},
+    });
+
+```
+
+```shell
+test> db.items.updateMany(
+          {category: "Smart Watch"},
+          {
+              $set: {sale: true, model: "Sale model 42"},
+          });
+[2024-02-25 15:58:59] completed in 233 ms
+```
+
+8. Find items that have (present field) certain properties
+
+```js
+db.items.find({sale: {$exists: true}});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d5"
+    },
+    "category": "Smart Watch",
+    "model": "Sale model 42",
+    "price": 200,
+    "producer": "Garmin",
+    "sale": true
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d6"
+    },
+    "category": "Smart Watch",
+    "model": "Sale model 42",
+    "price": 400,
+    "producer": "Casio",
+    "sale": true
+  }
+]
+```
+
+9. For found items, increase their price by a certain amount
+
+```js
+db.items.updateMany(
+    {
+        sale: {
+            $exists: true
+        }
+    },
+    {$inc: {price: 100}}
+);
+
+db.items.find({
+    sale: {
+        $exists: true
+    }
+});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d5"
+    },
+    "category": "Smart Watch",
+    "model": "Sale model 42",
+    "price": 300,
+    "producer": "Garmin",
+    "sale": true
+  },
+  {
+    "_id": {
+      "$oid": "65db235da820ad44b33c01d6"
+    },
+    "category": "Smart Watch",
+    "model": "Sale model 42",
+    "price": 500,
+    "producer": "Casio",
+    "sale": true
+  }
+]
+```
+
+### Orders
+
+1. Create several orders with different sets of items, but so that one of the items is in several orders
+
+```js
+db.createCollection("orders");
+
+db.orders.insertMany([
+    {
+        "order_number": 201513,
+        "date": ISODate("2015-04-14"),
+        "total_sum": 1923.4,
+        "customer": {
+            "name": "Andrii",
+            "surname": "Rodinov",
+            "phones": ["+9876543", "+1234567"],
+            "address": "PTI, Peremohy 37, Kyiv, UA"
+        },
+        "payment": {
+            "card_owner": "Andrii Rodionov",
+            "cardId": "12345678"
+        },
+        "items_id": ["65db235da820ad44b33c01cf", "65db235da820ad44b33c01d3"]
+    },
+    {
+        "order_number": 201514,
+        "date": ISODate("2023-04-14"),
+        "total_sum": 3333,
+        "customer": {
+            "name": "Valentyn",
+            "surname": "Yukhymenko",
+            "phones": ["+33333", "+44444"],
+            "address": "London, UK"
+        },
+        "payment": {
+            "card_owner": "Valentyn Yukhymenko",
+            "cardId": "987654321"
+        },
+        "items_id": ["65db235da820ad44b33c01d5", "65db235da820ad44b33c01d3"]
+    },
+    {
+        "order_number": 201515,
+        "date": ISODate("2023-09-14"),
+        "total_sum": 2222.333,
+        "customer": {
+            "name": "Andrii",
+            "surname": "Zahuta",
+            "phones": ["+12345678"],
+            "address": "Prague"
+        },
+        "payment": {
+            "card_owner": "Valentyn Yukhymenko",
+            "cardId": "987654321"
+        },
+        "items_id": ["65db235da820ad44b33c01d1", "65db235da820ad44b33c01d3"]
+    },
+]);
+```
+
+```shell
+[2024-02-25 16:02:17] completed in 199 ms
+[2024-02-25 16:04:41] completed in 285 ms
+```
+
+2. Display all orders
+
+```js
+db.orders.find({});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f73"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Rodinov",
+      "phones": [
+        "+9876543",
+        "+1234567"
+      ],
+      "address": "PTI, Peremohy 37, Kyiv, UA"
+    },
+    "date": {
+      "$date": "2015-04-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01cf",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201513,
+    "payment": {
+      "card_owner": "Andrii Rodionov",
+      "cardId": "12345678"
+    },
+    "total_sum": 1923.4
+  },
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f74"
+    },
+    "customer": {
+      "name": "Valentyn",
+      "surname": "Yukhymenko",
+      "phones": [
+        "+33333",
+        "+44444"
+      ],
+      "address": "London, UK"
+    },
+    "date": {
+      "$date": "2023-04-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d5",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201514,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 3333
+  },
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f75"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Zahuta",
+      "phones": [
+        "+12345678"
+      ],
+      "address": "Prague"
+    },
+    "date": {
+      "$date": "2023-09-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d1",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201515,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 2222.333
+  }
+]
+```
+
+3. Display orders with a value greater than a certain value
+
+```js
+db.orders.find({total_sum: {$gt: 1923.4}});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f74"
+    },
+    "customer": {
+      "name": "Valentyn",
+      "surname": "Yukhymenko",
+      "phones": [
+        "+33333",
+        "+44444"
+      ],
+      "address": "London, UK"
+    },
+    "date": {
+      "$date": "2023-04-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d5",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201514,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 3333
+  },
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f75"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Zahuta",
+      "phones": [
+        "+12345678"
+      ],
+      "address": "Prague"
+    },
+    "date": {
+      "$date": "2023-09-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d1",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201515,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 2222.333
+  }
+]
+```
+
+4. Find orders made by one customer
+
+```js
+db.orders.find({"customer.name": "Andrii", "customer.surname": "Zahuta"});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f75"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Zahuta",
+      "phones": [
+        "+12345678"
+      ],
+      "address": "Prague"
+    },
+    "date": {
+      "$date": "2023-09-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d1",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201515,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 2222.333
+  }
+]
+```
+
+5. Find all orders with a certain item(s) (you can search by ObjectId)
+
+```js
+db.orders.find({items_id: {$in: ["65db235da820ad44b33c01d3"]}});
+```
+
+```json
+[
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f73"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Rodinov",
+      "phones": [
+        "+9876543",
+        "+1234567"
+      ],
+      "address": "PTI, Peremohy 37, Kyiv, UA"
+    },
+    "date": {
+      "$date": "2015-04-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01cf",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201513,
+    "payment": {
+      "card_owner": "Andrii Rodionov",
+      "cardId": "12345678"
+    },
+    "total_sum": 1923.4
+  },
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f74"
+    },
+    "customer": {
+      "name": "Valentyn",
+      "surname": "Yukhymenko",
+      "phones": [
+        "+33333",
+        "+44444"
+      ],
+      "address": "London, UK"
+    },
+    "date": {
+      "$date": "2023-04-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d5",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201514,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 3333
+  },
+  {
+    "_id": {
+      "$oid": "65db6519907e240b7da62f75"
+    },
+    "customer": {
+      "name": "Andrii",
+      "surname": "Zahuta",
+      "phones": [
+        "+12345678"
+      ],
+      "address": "Prague"
+    },
+    "date": {
+      "$date": "2023-09-14T00:00:00.000Z"
+    },
+    "items_id": [
+      "65db235da820ad44b33c01d1",
+      "65db235da820ad44b33c01d3"
+    ],
+    "order_number": 201515,
+    "payment": {
+      "card_owner": "Valentyn Yukhymenko",
+      "cardId": "987654321"
+    },
+    "total_sum": 2222.333
+  }
+]
+```
+
+6. Add one more item to all orders with a certain item and increase the existing order value by some X value
+
+```js
+db.orders.updateMany(
+        {items_id: {$in: ["65db235da820ad44b33c01d1"]}},
+        {$push: {"items_id": {$each: ["65db235da820ad44b33c01d0"]}}, $inc: {total_sum: 600}}
+);
+```
+
+```shell
+test> db.orders.updateMany(
+          {items_id: {$in: ["65db235da820ad44b33c01d1"]}},
+          {$push: {"items_id": {$each: ["65db235da820ad44b33c01d0"]}}, $inc: {total_sum: 600}}
+          );
+[2024-02-25 16:15:47] completed in 188 ms
+```
+
+7. Display the number of items in a certain order
+
+```js
+db.orders.findOne({order_number: 201515}).items_id.length;
+```
+
+```json
+3
+```
+
+8. Display only customer information and credit card numbers for orders over a certain price
+
+```js
+db.orders.find({total_sum: {$gt: 1923.4}}, {
+    _id: 0,
+    customer: 1,
+    "payment.cardId": 1
+});
+
+```
+
+```json
+[
+  {
+    "customer": {
+      "name": "Valentyn",
+      "surname": "Yukhymenko",
+      "phones": [
+        "+33333",
+        "+44444"
+      ],
+      "address": "London, UK"
+    },
+    "payment": {
+      "cardId": "987654321"
+    }
+  },
+  {
+    "customer": {
+      "name": "Andrii",
+      "surname": "Zahuta",
+      "phones": [
+        "+12345678"
+      ],
+      "address": "Prague"
+    },
+    "payment": {
+      "cardId": "987654321"
+    }
+  }
+]
+```
+
