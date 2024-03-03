@@ -1,4 +1,12 @@
-# neo4j basics
+# Neo4j basics
+
+My environment:
+- Run Neo4j instance [via docker-compose](../../db_environment/neo4j/docker_compose.yaml)
+- Visualisation and query execution were done via **Neo4j Browser** accessible from docker-compose
+- Queries to insert records and relationships can be found [here](../../db_experiments/neo4j/basics/insert_data.cyp)
+- Queries to analyze data, according to given task, can be found [here](../../db_experiments/neo4j/basics/analyze_data.cyp)
+
+## Experiments
 
 1. Find all items in an order by order ID
 ```cypher
