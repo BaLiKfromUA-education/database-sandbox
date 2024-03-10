@@ -193,3 +193,4 @@ shop> SELECT * FROM shop.items WHERE properties CONTAINS KEY 'onSale'
 
 ## Orders
 
+will be done in a few hours
