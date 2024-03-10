@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  cassandra:
+    image: cassandra:5.0
+    ports:
+      - 9042:9042
+    volumes:
+      - ~/apps/cassandra:/var/lib/cassandra
+      - ./cassandra.yaml:/etc/cassandra/cassandra.yaml
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra_basics
