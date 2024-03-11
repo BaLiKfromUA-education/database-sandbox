@@ -49,3 +49,17 @@ AND category IS NOT NULL
 PRIMARY KEY ((category, producer), price, id);
 
 // orders
+CREATE TABLE shop.orders(
+  customer_id text,
+  order_date timestamp,
+  item_ids list<int>,
+  price int,
+  PRIMARY KEY ((customer_id), order_date)
+) WITH CLUSTERING ORDER BY (order_date DESC);
+
+CREATE INDEX item_ids_idx ON shop.orders(item_ids);
+
+INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Valentyn', '2024-03-10 02:03:40+0000', [1, 2, 3], 2666);
+INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Valentyn', '2024-03-09 02:03:40+0000', [6], 300);
+INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Olga', '2024-03-08 02:03:40+0000', [2], 1200);
+INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Olga', '2024-03-11 03:03:40+0000', [2, 4], 1900);

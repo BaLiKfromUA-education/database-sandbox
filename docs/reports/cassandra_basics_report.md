@@ -193,4 +193,159 @@ shop> SELECT * FROM shop.items WHERE properties CONTAINS KEY 'onSale'
 
 ## Orders
 
-will be done in a few hours
+**For each customer** we should be able to quickly search for their orders.
+
+1. Write a query that shows the structure of the created table (DESCRIBE command)
+```sql
+DESCRIBE TABLE shop.orders;
+```
+
+```json
+[
+  {
+    "keyspace_name": "shop",
+    "type": "table",
+    "name": "orders",
+    "create_statement": "CREATE TABLE shop.orders (\n    customer_id text,\n    order_date timestamp,\n    price int,\n    item_ids list<int>,\n    PRIMARY KEY (customer_id, order_date)\n) WITH CLUSTERING ORDER BY (order_date DESC)\n    AND additional_write_policy = '99p'\n    AND allow_auto_snapshot = true\n    AND bloom_filter_fp_chance = 0.01\n    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}\n    AND cdc = false\n    AND comment = ''\n    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}\n    AND compression = {'chunk_length_in_kb': '16', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}\n    AND memtable = 'default'\n    AND crc_check_chance = 1.0\n    AND default_time_to_live = 0\n    AND extensions = {}\n    AND gc_grace_seconds = 864000\n    AND incremental_backups = true\n    AND max_index_interval = 2048\n    AND memtable_flush_period_in_ms = 0\n    AND min_index_interval = 128\n    AND read_repair = 'BLOCKING'\n    AND speculative_retry = '99p';"
+  },
+  {
+    "keyspace_name": "shop",
+    "type": "index",
+    "name": "item_ids_idx",
+    "create_statement": "CREATE INDEX item_ids_idx ON shop.orders (values(item_ids));"
+  }
+]
+```
+
+2. For the customer, display all their orders sorted by the time when they were made
+```sql
+SELECT * FROM shop.orders WHERE customer_id='Olga';
+```
+
+```text
++-----------+-----------------------+--------+-----+
+|customer_id|order_date             |item_ids|price|
++-----------+-----------------------+--------+-----+
+|Olga       |2024-03-11 03:03:40.000|[2, 4]  |1900 |
+|Olga       |2024-03-08 02:03:40.000|[2]     |1200 |
++-----------+-----------------------+--------+-----+
+```
+
+3. For the customer, display all their orders with given item id
+```sql
+SELECT * FROM shop.orders WHERE customer_id='Olga' AND item_ids CONTAINS 4;
+```
+
+```text
++-----------+-----------------------+--------+-----+
+|customer_id|order_date             |item_ids|price|
++-----------+-----------------------+--------+-----+
+|Olga       |2024-03-11 03:03:40.000|[2, 4]  |1900 |
++-----------+-----------------------+--------+-----+
+```
+
+4. For the customer, find the number of order in given period of time
+```sql
+SELECT customer_id, count(*) FROM shop.orders WHERE customer_id='Olga' AND order_date > '2024-02-11 03:03:40.000' AND order_date < '2024-03-10 03:03:40.000';
+```
+
+```text
++-----------+-----+
+|customer_id|count|
++-----------+-----+
+|Olga       |1    |
++-----------+-----+
+
+```
+
+5. For each customer, find the sum of their orders
+```sql
+SELECT customer_id, sum(price) FROM shop.orders GROUP BY customer_id;
+```
+
+```text
++-----------+-----------------+
+|customer_id|system.sum(price)|
++-----------+-----------------+
+|Valentyn   |2966             |
+|Olga       |3100             |
++-----------+-----------------+
+```
+
+6. For each customer, find an order with maximum price
+
+```sql
+SELECT customer_id, order_date, item_ids, max(price) FROM shop.orders GROUP BY customer_id;
+```
+
+```text
++-----------+-----------------------+---------+-----------------+
+|customer_id|order_date             |item_ids |system.max(price)|
++-----------+-----------------------+---------+-----------------+
+|Valentyn   |2024-03-10 02:03:40.000|[1, 2, 3]|2666             |
+|Olga       |2024-03-11 03:03:40.000|[2, 4]   |1900             |
++-----------+-----------------------+---------+-----------------+
+
+```
+
+7. Modify any order by adding/removing item from it + change the price.
+
+```sql
+UPDATE shop.orders SET item_ids = item_ids + [1], price = 2566 WHERE customer_id='Olga' AND order_date='2024-03-11 03:03:40+0000';
+SELECT customer_id, order_date, item_ids, max(price) FROM shop.orders WHERE customer_id='Olga';
+```
+
+```text
++-----------+-----------------------+---------+-----------------+
+|customer_id|order_date             |item_ids |system.max(price)|
++-----------+-----------------------+---------+-----------------+
+|Olga       |2024-03-11 03:03:40.000|[2, 4, 1]|2566             |
++-----------+-----------------------+---------+-----------------+
+```
+
+8. For each order, select `WRITETIME` of its price
+
+```sql
+SELECT customer_id, WRITETIME(price) FROM shop.orders;
+```
+
+```text
++-----------+----------------+
+|customer_id|writetime(price)|
++-----------+----------------+
+|Valentyn   |1710114382148536|
+|Valentyn   |1710114382189219|
+|Olga       |1710117395530524|
+|Olga       |1710114382201584|
++-----------+----------------+
+```
+
+9. Insert new order with TTL, after which it will be removed
+
+```sql
+INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Andrii', '2024-03-11 03:03:40+0000', [2, 4], 1900) USING TTL 10;
+SELECT * FROM shop.orders WHERE customer_id='Andrii';
+*wait > 10 seconds*
+SELECT * FROM shop.orders WHERE customer_id='Andrii';
+```
+
+```text
+shop> INSERT INTO shop.orders (customer_id, order_date, item_ids, price) VALUES ('Andrii', '2024-03-11 03:03:40+0000', [2, 4], 1900) USING TTL 10
+[2024-03-11 00:45:01] completed in 6 ms
+shop> SELECT * FROM shop.orders WHERE customer_id='Andrii'
+[2024-03-11 00:45:01] 1 row retrieved starting from 1 in 51 ms (execution: 13 ms, fetching: 38 ms)
+shop> SELECT * FROM shop.orders WHERE customer_id='Andrii'
+[2024-03-11 00:45:27] 0 rows retrieved in 41 ms (execution: 9 ms, fetching: 32 ms)
+```
+
+10./11. Create/Return order is JSON format
+
+```sql
+INSERT INTO shop.orders JSON '{"customer_id": "Andrii", "order_date": "2024-03-01 13:01:00.000Z", "item_ids": [2,4], "price": 1900}';
+SELECT JSON * FROM shop.orders WHERE customer_id='Andrii';
+```
+
+```json
+{"customer_id": "Andrii", "order_date": "2024-03-01 13:01:00.000Z", "item_ids": [2, 4], "price": 1900}
+```
+
