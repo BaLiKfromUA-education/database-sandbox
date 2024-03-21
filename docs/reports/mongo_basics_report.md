@@ -2,7 +2,7 @@
 
 My environment:
 
-- Run MongoDB instance [via docker-compose](../../db_environment/mongo/docker_compose.yaml)
+- Run MongoDB instance [via docker-compose](../../db_environment/mongo/basics/docker_compose.yaml)
 - Execute queries via MongoDB console from my JetBrains IDE.
 
 ### Items
