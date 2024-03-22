@@ -1,5 +1,12 @@
-Half of the mongo db queries were done via JetBrains IDE,
-others were done directly via installed `mongosh` because in IDE I faced few known bugs.
+# MongoDB replication
+
+My environment:
+
+- Run MongoDB instance [via docker-compose](../../db_environment/mongo/replication/docker_compose.yaml)
+- Half of the MongoDB queries were done via JetBrains IDE, others were done directly via installed `mongosh` due to IDE bugs that I faced during execution of some queries.
+
+
+## Experiments
 
 1. Configure replication for 3 nodes: 1 primary and 2 secondaries.
    docker-compose config
@@ -537,7 +544,7 @@ replication_replica-2_1   docker-entrypoint.sh --rep ...   Up         27017/tcp,
 replication_replica-3_1   docker-entrypoint.sh --rep ...   Exit 137     
 ```
 
-```json
+```js
 db.messages.insertOne({text: "last task final exp -- msg 1"}, {writeConcern: {w: 1}})
 db.messages.insertOne({text: "last task final exp -- msg 2"}, {writeConcern: {w: 1}})
 db.messages.find({}).readConcern('linearizable')
