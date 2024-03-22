@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  replica-1:
+    image: mongo:7.0-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - replica-1_dbdata:/data/db
+      - replica-1_config:/data/configdb
+    command: [ "--replSet", "rs0", "--bind_ip_all", "--port", "27017" ]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  replica-2:
+    image: mongo:7.0-jammy
+    ports:
+      - '27018:27018'
+    volumes:
+      - replica-2_dbdata:/data/db
+      - replica-2_config:/data/configdb
+    command: [ "--replSet", "rs0", "--bind_ip_all", "--port", "27018" ]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  replica-3:
+    image: mongo:7.0-jammy
+    ports:
+      - '27019:27019'
+    volumes:
+      - replica-3_dbdata:/data/db
+      - replica-3_config:/data/configdb
+    command: [ "--replSet", "rs0", "--bind_ip_all", "--port", "27019" ]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  replica-1_dbdata:
+  replica-1_config:
+  replica-2_dbdata:
+  replica-2_config:
+  replica-3_dbdata:
+  replica-3_config:
