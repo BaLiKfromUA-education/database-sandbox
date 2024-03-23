@@ -197,3 +197,4 @@ UN  172.29.0.2  167.79 KiB  16      100.0%            b0b2d43d-021c-4f7d-ada9-8c
 
 7. For each record from each namespace, print nodes where record is stored
 
+** This lab will be done in couple of hours**
